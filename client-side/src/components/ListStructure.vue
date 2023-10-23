@@ -47,5 +47,28 @@ export default {
 </template>
 
 <style scoped>
+.sidebar {
+  width: 250px;
+  background-color: #20a8a8;
+  color: white;
+  height: 100%; /* Füllt die  Höhe des Bildschirms aus */
+  position: fixed; /* Fixierte Position, um es am linken Rand zu halten */
+  top: 0;
+  left: 0;
+  overflow-y: auto; /* Bei Bedarf scrollbar machen */
+}
+.content {
+  margin-left: 250px; /* Platz für die Navigationsleiste einräumen */
+  padding: 5px;
+}
 
+/* Stile für Ihre Navigationsleiste */
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar li {
+  padding: 10px;
+}
 </style>
