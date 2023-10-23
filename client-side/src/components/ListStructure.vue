@@ -63,12 +63,52 @@ export default {
 }
 
 /* Stile für Ihre Navigationsleiste */
+
+/* Navigationspunkte an der Sidebar mittig setzen*/
+
 .sidebar ul {
   list-style: none;
-  padding: 0;
+  padding: 50px;
 }
-
+/* Abstand zwischen den Navigationspunkte an der Sidebar */
 .sidebar li {
   padding: 10px;
+}
+/* Liste in dem mein Inhalt drin steht */
+
+.file-list {
+  padding: 10px;
+}
+
+.file-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 5px solid #20a8a8;
+  padding: 10px;
+  margin-top: 50px;
+}
+
+.file-name {
+  flex: 1;
+}
+
+.user-name {
+  flex: 1;
+}
+/* Name meines Filemanagers */
+
+.sidebar li.larger-text {
+  padding: 10px;
+  font-size: 25px; /* Hier kann ich die gewünschte Schriftgröße angeben */
+}
+.delete-button {
+  background-color: rgb(63, 158, 170);
+  border-radius: 30px;
+  color: white;
+  border: none;
+  cursor: pointer;
+  width: 250px;
+  height: 50px;
 }
 </style>
