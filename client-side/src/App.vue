@@ -15,5 +15,9 @@ export default {
 </script>
 
 <style>
-
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  color: #377bab;
+  margin-top: 0;
+}
 </style>
