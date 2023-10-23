@@ -1,11 +1,19 @@
-<script setup>
-
-</script>
-
 <template>
-
+  <ListStructure msg="Filemanager"/>
 </template>
 
-<style scoped>
+<script>
+import ListStructure from './components/listStructure.vue';
+
+export default {
+  name: 'App',
+  components: {
+
+    ListStructure
+}
+}
+</script>
+
+<style>
 
 </style>
