@@ -5,9 +5,9 @@ export default {
       files: [
         // hier erstelle ich ein Array mit dem die Info über die Datei wie Dateiname und Benuetzername übergeben wird
 
-        { name: 'Datei1.txt', userName: 'Benutzer1' },
-        { name: 'Datei2.jpg', userName: 'Benutzer2' },
-        { name: 'Datei3.pdf', userName: 'Benutzer3' }
+        { name: 'Datei1.txt', lastChangedDate: '11.11.2023',userName: 'Benutzer1' },
+        { name: 'Datei2.jpg', lastChangedDate: '15.11.2023',userName: 'Benutzer2' },
+        { name: 'Datei3.pdf', lastChangedDate: '28.11.2023',userName: 'Benutzer3' }
       ]
     };
   },
@@ -37,6 +37,7 @@ export default {
       <div class="file-list">
         <div v-for="(file, index) in files" :key="index" class="file-item">
           <div class="file-name">{{ file.name }}</div>
+          <div class="last-changed-date">{{ file.lastChangedDate }}</div>
           <div class="user-name">{{ file.userName }}</div>
           <button @click="deleteFile(index)" class="delete-button">Löschen</button>
           
@@ -51,57 +52,105 @@ export default {
   width: 250px;
   background-color: #20a8a8;
   color: white;
-  height: 100%; /* Füllt die  Höhe des Bildschirms aus */
+  height: 100%; /* Füllen Sie die Höhe des Bildschirms aus */
   position: fixed; /* Fixierte Position, um es am linken Rand zu halten */
   top: 0;
   left: 0;
   overflow-y: auto; /* Bei Bedarf scrollbar machen */
 }
+
+.left-align {
+  text-align: left;
+  font-size: 25px;
+  margin: 0;
+  padding: 20px;
+  position: absolute; /* Ändern Sie die Position auf absolute */
+  left: 270px; /* Verschieben Sie das Element nach rechts, um Platz für die Navigation zu lassen */
+}
+
 .content {
   margin-left: 250px; /* Platz für die Navigationsleiste einräumen */
-  padding: 5px;
+  padding: 10px;
+  width: 100%;
 }
+
+
+
 
 /* Stile für Ihre Navigationsleiste */
-
-/* Navigationspunkte an der Sidebar mittig setzen*/
-
 .sidebar ul {
   list-style: none;
-  padding: 50px;
+  padding: 0;
 }
-/* Abstand zwischen den Navigationspunkte an der Sidebar */
+
 .sidebar li {
   padding: 10px;
 }
-/* Liste in dem mein Inhalt drin steht */
+
+.sidebar a {
+  color: white;
+  text-decoration: none;
+}
 
 .file-list {
   padding: 10px;
 }
-
+@media( max-width:600px){
+  .file-item,.content,.file-name,.user-name{
+  width:100%
+  
+}
+}
+@media( max-width:601px){
+  .file-item,.content,.file-name,.user-name{
+  width:100%
+  
+}
+}
+@media( max-width:768px){
+  .file-item,.content,.file-name,.user-name{
+  width:100%
+  
+}
+}
+@media( max-width:992px){
+  .file-item,.content,.file-name,.user-name{
+  width:100%
+  }
+}
+@media( max-width:1200px){
+  .file-item,.content,.file-name,.user-name{
+  width:100%
+  
+}
+}
 .file-item {
   display: flex;
+  width: 150%;
   justify-content: space-between;
   align-items: center;
   border: 5px solid #20a8a8;
   padding: 10px;
-  margin-top: 50px;
+  margin-top: 60px;
 }
 
 .file-name {
   flex: 1;
 }
-
+.last-changed-date{
+  flex:1;
+  text-align: center;
+}
 .user-name {
   flex: 1;
 }
-/* Name meines Filemanagers */
 
 .sidebar li.larger-text {
-  padding: 10px;
-  font-size: 25px; /* Hier kann ich die gewünschte Schriftgröße angeben */
+  padding: 30px;
+  font-size: 25px; /* Hier können Sie die gewünschte Schriftgröße angeben */
 }
+
+
 .delete-button {
   background-color: rgb(63, 158, 170);
   border-radius: 30px;
