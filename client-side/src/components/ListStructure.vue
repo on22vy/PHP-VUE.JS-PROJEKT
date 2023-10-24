@@ -51,6 +51,8 @@ export default {
     </nav>
     <p class="left-align">Hello Benutzer!</p>
 
+   
+
     <div class="content">
       <div class="upload-container">
       <div class="file-upload" @click="triggerFileInput">+ Datei hochladen</div>
@@ -61,7 +63,11 @@ export default {
       <input type="file" ref="fileInput" style="display: none" @change="handleFileUpload" multiple />
   </div>
 
-      
+  <div class="file-list-header">
+      <p class="file-header">Dateiname</p>
+      <p class="date-header">Zuletzt geändert am</p>
+      <p class="user-header">Benutzername</p>
+    </div>
     
       <div class="file-list">
         <div v-for="(file, index) in files" :key="index" class="file-item">
@@ -103,8 +109,6 @@ export default {
   padding: 10px;
   width: 100%;
 }
-
-
 
 
 /* Stile für Ihre Navigationsleiste */
@@ -167,7 +171,7 @@ export default {
 }
 
 .file-name {
-  flex: 1;
+  flex:1;
 }
 .last-changed-date{
   flex:1;
@@ -175,6 +179,7 @@ export default {
 }
 .user-name {
   flex: 1;
+  
 }
 
 .sidebar li.larger-text {
