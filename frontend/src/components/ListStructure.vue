@@ -12,6 +12,7 @@ export default {
     };
   },
   methods: {
+ 
     downloadFile() {
       // Erstelle einen Link zum Herunterladen der Datei
       const fileUrl = 'URL_DER_DATEI'; // Passe dies an die URL deiner Datei an
@@ -36,9 +37,21 @@ export default {
     },
     handleFileUpload(event) {
       // Hier können Sie den hochgeladenen Dateiinhalt verarbeiten
-      const selectedFile = event.target.files[0];
-      // Fügen Sie Ihren Code zur Verarbeitung der hochgeladenen Datei hier ein
+      const selectedFiles = event.target.files;
+
+      for (let i = 0; i < selectedFiles.length; i++) {
+        const selectedFile = selectedFiles[i];
+        // Verarbeiten Sie jede ausgewählte Datei und fügen Sie sie zur Dateiliste hinzu.
+        const fileData = {
+          name: selectedFile.name, // Dateiname
+          lastChangedDate: new Date().toLocaleDateString(), // Aktuelles Datum
+          userName: 'Benutzer', // Benutzername (passe dies an)
+          url: 'URL_ZU_DATEI' // URL zur Datei (passe dies an)
+        };
+        this.files.push(fileData);
+      }
     },
+    
     triggerFolderInput() {
       // Klicken Sie auf das versteckte Ordner-Input-Feld
       this.$refs.folderInput.click();
@@ -83,6 +96,8 @@ export default {
       <p class="date-header">Zuletzt geändert am</p>
       <p class="user-header">Benutzername</p>
     </div>
+
+    
           <!--Eintrag-->
       <div class="file-list">
         <div v-for="(file, index) in files" :key="index" class="file-item">
