@@ -5,9 +5,7 @@ export default {
       files: [
         // hier erstelle ich ein Array mit dem die Info über die Datei wie Dateiname und Benuetzername übergeben wird
 
-        { name: 'Datei1.txt', lastChangedDate: '11.11.2023',userName: 'Benutzer1', url: 'URL_ZU_DATEI_1' },
-        { name: 'Datei2.jpg', lastChangedDate: '15.11.2023',userName: 'Benutzer2', url: 'URL_ZU_DATEI_2' },
-        { name: 'Datei3.pdf', lastChangedDate: '28.11.2023',userName: 'Benutzer3', url: 'URL_ZU_DATEI_3' }
+        
       ]
     };
   },
@@ -46,12 +44,12 @@ export default {
           name: selectedFile.name, // Dateiname
           lastChangedDate: new Date().toLocaleDateString(), // Aktuelles Datum
           userName: 'Benutzer', // Benutzername (passe dies an)
-          url: 'URL_ZU_DATEI' // URL zur Datei (passe dies an)
+          url:  URL.createObjectURL(selectedFile)// URL zur Datei (passe dies an)
         };
         this.files.push(fileData);
       }
     },
-    
+
     triggerFolderInput() {
       // Klicken Sie auf das versteckte Ordner-Input-Feld
       this.$refs.folderInput.click();
@@ -60,9 +58,20 @@ export default {
       // Hier können Sie den ausgewählten Ordner verarbeiten
       const selectedFolder = event.target.files[0];
       // Fügen Sie Ihren Code zur Verarbeitung des ausgewählten Ordners hier ein
-    }
+    },
+    
+    openFileContent(file) {
+      // Prüfe, ob die Datei eine PDF ist
+      if (file.url.toLowerCase().endsWith('.pdf')) {
+        // Öffne die PDF-Datei in einem neuen Fenster/Tab
+        window.open(file.url, '_blank');
+      } else {
+        // Hier könntest du Logik hinzufügen, um andere Dateitypen zu öffnen oder eine Fehlermeldung anzuzeigen
+        console.log('Dieser Dateityp wird nicht unterstützt.');
   }
-};
+}
+  }
+}
 </script>
 
 <template>
@@ -101,7 +110,7 @@ export default {
           <!--Eintrag-->
       <div class="file-list">
         <div v-for="(file, index) in files" :key="index" class="file-item">
-          <a :href="file.url" target="_blank" class="file-name">{{ file.name }}</a>
+          <a :href="file.url" target="_blank" @click="openFileContent(file)" class="file-name">{{ file.name }}</a>
           <div class="last-changed-date">{{ file.lastChangedDate }}</div>
           <div class="user-name">{{ file.userName }}</div>
           <button @click="deleteFile(index)" class="delete-button">
