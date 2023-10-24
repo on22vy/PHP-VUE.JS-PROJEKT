@@ -5,9 +5,9 @@ export default {
       files: [
         // hier erstelle ich ein Array mit dem die Info über die Datei wie Dateiname und Benuetzername übergeben wird
 
-        { name: 'Datei1.txt', lastChangedDate: '11.11.2023',userName: 'Benutzer1' },
-        { name: 'Datei2.jpg', lastChangedDate: '15.11.2023',userName: 'Benutzer2' },
-        { name: 'Datei3.pdf', lastChangedDate: '28.11.2023',userName: 'Benutzer3' }
+        { name: 'Datei1.txt', lastChangedDate: '11.11.2023',userName: 'Benutzer1', url: 'URL_ZU_DATEI_1' },
+        { name: 'Datei2.jpg', lastChangedDate: '15.11.2023',userName: 'Benutzer2', url: 'URL_ZU_DATEI_2' },
+        { name: 'Datei3.pdf', lastChangedDate: '28.11.2023',userName: 'Benutzer3', url: 'URL_ZU_DATEI_3' }
       ]
     };
   },
@@ -86,7 +86,7 @@ export default {
     
       <div class="file-list">
         <div v-for="(file, index) in files" :key="index" class="file-item">
-          <div class="file-name">{{ file.name }}</div>
+          <a :href="file.url" target="_blank" class="file-name">{{ file.name }}</a>
           <div class="last-changed-date">{{ file.lastChangedDate }}</div>
           <div class="user-name">{{ file.userName }}</div>
           <button @click="deleteFile(index)" class="delete-button">
@@ -203,6 +203,12 @@ margin-left:60px;
 }
 .file-name {
   flex:1;
+  text-decoration: none;
+  color:#377bab;
+  cursor: pointer;
+}
+.file-name:hover {
+  text-decoration: underline;
 }
 .last-changed-date{
   flex:1;
@@ -235,12 +241,15 @@ margin-left:60px;
   width: 140px;
   height: 50px;
   border-radius: 10px;
-  color: #20a8a8;
   cursor: pointer;
   border: 2px solid #20a8a8;
   margin-right: 20px; /* Abstand zwischen den Buttons */
-}
 
+}
+.folder-upload:hover,.file-upload:hover{
+  background-color: #20a8a8;
+  color: #ffff;
+}
 
 .delete-button {
 border-radius: 50px;
