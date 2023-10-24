@@ -69,21 +69,21 @@ export default {
    
 
     <div class="content">
+      <!--Hochladen von Datei und Ordner-->
       <div class="upload-container">
       <div class="file-upload" @click="triggerFileInput">+ Datei hochladen</div>
       <div class="folder-upload" @click="triggerFolderInput">+ Ordner hochladen</div>
-      
-
       <input type="file" ref="folderInput" style="display: none" @change="handleFolderUpload" webkitdirectory directory accept="*/" />
       <input type="file" ref="fileInput" style="display: none" @change="handleFileUpload" multiple />
   </div>
 
+        <!--Überschriften der Listenansicht-->
   <div class="file-list-header">
       <p class="file-header">Dateiname</p>
       <p class="date-header">Zuletzt geändert am</p>
       <p class="user-header">Benutzername</p>
     </div>
-    
+          <!--Eintrag-->
       <div class="file-list">
         <div v-for="(file, index) in files" :key="index" class="file-item">
           <a :href="file.url" target="_blank" class="file-name">{{ file.name }}</a>
