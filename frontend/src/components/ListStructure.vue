@@ -93,7 +93,7 @@ export default {
   left: 0;
   overflow-y: auto; /* Bei Bedarf scrollbar machen */
 }
-
+/*Begrüung benutzer*/
 .left-align {
   text-align: left;
   font-size: 25px;
@@ -105,9 +105,9 @@ export default {
 }
 
 .content {
-  margin-left: 250px; /* Platz für die Navigationsleiste einräumen */
+  margin-left: 200px; /* Platz für die Navigationsleiste einräumen */
   padding: 10px;
-  width: 100%;
+  width: 80%;
 }
 
 
@@ -166,10 +166,18 @@ export default {
   justify-content: space-between;
   align-items: center;
   border: 5px solid #20a8a8;
-  padding: 10px;
-  margin-top: 60px;
+  padding: 2px;
+margin-block: 10px;
+margin-right: 50px;
 }
-
+.file-list-header{
+align-items: center;
+justify-content: space-between;
+display:flex;
+margin-block: 10px;
+margin-right: 100px;
+margin-left:60px;
+}
 .file-name {
   flex:1;
 }
