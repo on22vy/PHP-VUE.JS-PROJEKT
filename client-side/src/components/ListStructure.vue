@@ -24,6 +24,15 @@ export default {
       // Hier können Sie den hochgeladenen Dateiinhalt verarbeiten
       const selectedFile = event.target.files[0];
       // Fügen Sie Ihren Code zur Verarbeitung der hochgeladenen Datei hier ein
+    },
+    triggerFolderInput() {
+      // Klicken Sie auf das versteckte Ordner-Input-Feld
+      this.$refs.folderInput.click();
+    },
+    handleFolderUpload(event) {
+      // Hier können Sie den ausgewählten Ordner verarbeiten
+      const selectedFolder = event.target.files[0];
+      // Fügen Sie Ihren Code zur Verarbeitung des ausgewählten Ordners hier ein
     }
   }
 };
@@ -43,13 +52,17 @@ export default {
     <p class="left-align">Hello Benutzer!</p>
 
     <div class="content">
-      <div class="file-upload">
-        <input type="file" ref="fileInput" style="display: none" @change="handleFileUpload">
-        <button @click="triggerFileInput" class="file-upload"> + Datei hochladen</button>
-      </div>
+      <div class="upload-container">
+      <div class="file-upload" @click="triggerFileInput">+ Datei hochladen</div>
+      <div class="folder-upload" @click="triggerFolderInput">+ Ordner hochladen</div>
+      
 
-     
+      <input type="file" ref="folderInput" style="display: none" @change="handleFolderUpload" webkitdirectory directory accept="*/" />
+      <input type="file" ref="fileInput" style="display: none" @change="handleFileUpload" multiple />
+  </div>
 
+      
+    
       <div class="file-list">
         <div v-for="(file, index) in files" :key="index" class="file-item">
           <div class="file-name">{{ file.name }}</div>
@@ -170,15 +183,28 @@ export default {
 }
 
 /*Styles for the button*/
-.file-upload{
-  background-color: #20a8a8;
-  width: 130px;
+
+/* create two colums */
+.upload-container {
+  display: flex; 
+  align-items: center;
+}
+
+.folder-upload,
+.file-upload {
+  display: flex; /* Hier verwenden wir Flexbox */
+  justify-content: center; /* Zentriert den Text horizontal */
+  align-items: center; /* Zentriert den Text vertikal */
+  background: white;
+  width: 140px;
   height: 50px;
   border-radius: 10px;
-  color:white;
+  color: #20a8a8;
   cursor: pointer;
-  border: none;
+  border: 2px solid #20a8a8;
+  margin-right: 20px; /* Abstand zwischen den Buttons */
 }
+
 
 .delete-button {
   background-color: rgb(63, 158, 170);
