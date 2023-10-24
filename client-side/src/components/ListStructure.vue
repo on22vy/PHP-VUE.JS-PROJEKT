@@ -15,6 +15,15 @@ export default {
     deleteFile(index) {
       // mit dieser Methode lösche ich das Element aus dem Array
       this.files.splice(index, 1);
+    },
+    triggerFileInput() {
+      // Klicken Sie auf das versteckte Datei-Input-Feld
+      this.$refs.fileInput.click();
+    },
+    handleFileUpload(event) {
+      // Hier können Sie den hochgeladenen Dateiinhalt verarbeiten
+      const selectedFile = event.target.files[0];
+      // Fügen Sie Ihren Code zur Verarbeitung der hochgeladenen Datei hier ein
     }
   }
 };
@@ -34,6 +43,13 @@ export default {
     <p class="left-align">Hello Benutzer!</p>
 
     <div class="content">
+      <div class="file-upload">
+        <input type="file" ref="fileInput" style="display: none" @change="handleFileUpload">
+        <button @click="triggerFileInput" class="file-upload"> + Datei hochladen</button>
+      </div>
+
+     
+
       <div class="file-list">
         <div v-for="(file, index) in files" :key="index" class="file-item">
           <div class="file-name">{{ file.name }}</div>
@@ -65,7 +81,8 @@ export default {
   margin: 0;
   padding: 20px;
   position: absolute; /* Ändern Sie die Position auf absolute */
-  left: 270px; /* Verschieben Sie das Element nach rechts, um Platz für die Navigation zu lassen */
+  left: 380px; /* Verschieben Sie das Element nach rechts, um Platz für die Navigation zu lassen */
+  top:50px;
 }
 
 .content {
@@ -95,6 +112,8 @@ export default {
 .file-list {
   padding: 10px;
 }
+
+
 @media( max-width:600px){
   .file-item,.content,.file-name,.user-name{
   width:100%
@@ -150,6 +169,16 @@ export default {
   font-size: 25px; /* Hier können Sie die gewünschte Schriftgröße angeben */
 }
 
+/*Styles for the button*/
+.file-upload{
+  background-color: #20a8a8;
+  width: 130px;
+  height: 50px;
+  border-radius: 10px;
+  color:white;
+  cursor: pointer;
+  border: none;
+}
 
 .delete-button {
   background-color: rgb(63, 158, 170);
