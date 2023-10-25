@@ -1,7 +1,14 @@
+<script>
+
+
+
+</script>
+
+
 <template>
     
     <h2>List View </h2>
-   
+
    
    </template>
    
