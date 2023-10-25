@@ -45,35 +45,60 @@ downloadFile(file) {
     <h2>List View </h2>
 
     <div class="file-list">
-        <div v-for="(file, index) in files" :key="index" class="file-item">
-          <a :href="file.url" target="_blank" @click="openFileContent(file)" class="file-name">{{ file.name }}</a>
-          <div class="last-changed-date">{{ file.lastChangedDate }}</div>
-          <div class="user-name">{{ file.userName }}</div>
-    <div class="deleteButton">
-        <span class="material-icons">delete</span>
-    </div>
+    <div v-for="(file, index) in files" :key="index" class="file-item">
+      <a :href="file.url" target="_blank" @click="openFileContent(file)" class="file-name">{{ file.name }}</a>
+      <div class="last-changed-date">{{ file.lastChangedDate }}</div>
+      <div class="user-name">{{ file.userName }}</div>
 
-    <div @click="() => downloadFile(file)" class="downloadButton">
-        <span class="material-icons">download</span>
+      <!-- Download-Button -->
+      <span class="downloadButton material-icons" @click="() => downloadFile(file)">download</span>
+      
+      <!-- Löschen-Button -->
+      <span class="deleteButton material-icons" @click="() => deleteFile(file)">delete</span>
     </div>
-</div>
-</div>
+  </div>
+
 </template>
 
 <style scoped>
 
-.deleteButton{
- position: absolute;
- height:320px;
- right:150px;
- cursor: pointer;
-}
-.downloadButton{
- position: absolute;
- height:320px;
- right:100px;
- cursor: pointer;
+.deleteButton,
+.downloadButton {
+  cursor: pointer;
+  padding: 5px; /* Füge etwas Abstand zu den Icons hinzu */
+  margin-left: 10px; /* Füge Abstand zwischen den Buttons und den anderen Elementen hinzu */
 }
 
+.file-item {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2px;
+  margin-block: 20px;
+}
+
+.last-changed-date {
+  flex: 2;
+  text-align: center;
+}
+
+.file-name {
+  flex: 1;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.file-name:hover {
+  text-decoration: underline;
+}
+
+.user-name {
+  flex: 3;
+}
+
+.file-list {
+  padding: 10px;
+}
 
 </style>
