@@ -2,39 +2,52 @@
 export default {
   data() {
     return {
-      files: [
-      {
-        name: "Dokument1.pdf",
-        lastChangedDate: "2023-10-24",
-        userName: "Alice",
-        url: "https://example.com/documents/Dokument1.pdf"
-      },
-      {
-        name: "Bild.png",
-        lastChangedDate: "2023-10-23",
-        userName: "Bob",
-        url: "https://example.com/images/Bild.png"
-      },
-      {
-        name: "Bericht.docx",
-        lastChangedDate: "2023-10-22",
-        userName: "Charlie",
-        url: "https://example.com/documents/Bericht.docx"
-      }
-    ]
+        files: [
+        {
+          name: "Dokument1.pdf",
+          url: "URL_ZU_PDF1"
+        },
+        {
+          name: "Dokument2.pdf",
+          url: "URL_ZU_PDF2"
+        }
+        // Weitere Dateien
+      ]
     };
   },
 methods: {
+    openFileContent(file) {
+      // Prüfe, ob die Datei eine PDF ist
+      if (file.url.toLowerCase().endsWith('.pdf')) {
+        // Öffne die PDF-Datei in einem neuen Fenster/Tab
+        window.open(file.url, '_blank');
+      } else {
+        // Hier könntest du Logik hinzufügen, um andere Dateitypen zu öffnen oder eine Fehlermeldung anzuzeigen
+        console.log('Dieser Dateityp wird nicht unterstützt.');
+  }
+},
 downloadFile(file) {
-      const a = document.createElement('a');
-       a.href = file.url;
-       a.download = file.name; // Verwende den Dateinamen der aktuellen Datei
-        document.body.appendChild(a);
-        // Klicke auf den Link, um den Download zu starten
-        a.click();
-      // Entferne den Link aus dem Dokument, nachdem der Download abgeschlossen ist
-        document.body.removeChild(a);
-    }
+    const a = document.createElement('a');
+      
+      // Finden Sie die ausgewählte Datei im Array (z.B., die erste Datei)
+      const selectedFile = this.files[0];
+
+      // Setzen Sie die URL der ausgewählten Datei
+      a.href = selectedFile.url;
+
+      // Geben Sie der Datei einen Namen für den Download
+      a.download = selectedFile.name;
+
+      // Fügen Sie das Link-Element zum Dokument hinzu
+      document.body.appendChild(a);
+
+      // Klicken Sie auf den Link, um den Download zu starten
+      a.click();
+
+      // Entfernen Sie das Link-Element aus dem Dokument
+      document.body.removeChild(a);
+
+}
 }
 }
 </script>
@@ -51,7 +64,7 @@ downloadFile(file) {
       <div class="user-name">{{ file.userName }}</div>
 
       <!-- Download-Button -->
-      <span class="downloadButton material-icons" @click="() => downloadFile(file)">download</span>
+      <span class="downloadButton material-icons" @click=" downloadFile(file)">download</span>
       
       <!-- Löschen-Button -->
       <span class="deleteButton material-icons" @click="() => deleteFile(file)">delete</span>
