@@ -13,23 +13,17 @@ export default {
  
     downloadFile(file) {
       const a = document.createElement('a');
-  a.href = file.url;
-  a.download = file.name; // Verwende den Dateinamen der aktuellen Datei
-  document.body.appendChild(a);
-
-  // Klicke auf den Link, um den Download zu starten
-  a.click();
-
-  // Entferne den Link aus dem Dokument, nachdem der Download abgeschlossen ist
-  document.body.removeChild(a);
+       a.href = file.url;
+       a.download = file.name; // Verwende den Dateinamen der aktuellen Datei
+        document.body.appendChild(a);
+        // Klicke auf den Link, um den Download zu starten
+        a.click();
+      // Entferne den Link aus dem Dokument, nachdem der Download abgeschlossen ist
+        document.body.removeChild(a);
     },
     deleteFile(index) {
       // mit dieser Methode lösche ich das Element aus dem Array
       this.files.splice(index, 1);
-    },
-    triggerFileInput() {
-      // Klicken Sie auf das versteckte Datei-Input-Feld
-      this.$refs.fileInput.click();
     },
     handleFileUpload(event) {
       // Hier können Sie den hochgeladenen Dateiinhalt verarbeiten
@@ -47,7 +41,10 @@ export default {
         this.files.push(fileData);
       }
     },
-
+    triggerFileInput() {
+      // Klicken Sie auf das versteckte Datei-Input-Feld
+      this.$refs.fileInput.click();
+    },
     triggerFolderInput() {
       // Klicken Sie auf das versteckte Ordner-Input-Feld
       this.$refs.folderInput.click();
@@ -70,6 +67,7 @@ export default {
 }
   }
 }
+
 </script>
 
 <template>
