@@ -75,7 +75,10 @@ downloadFile(file) {
   justify-content: space-between;
   align-items: center;
   padding: 2px;
-  margin-block: 20px;
+  border: 2px solid var(--light);
+  background-color: var(--light);
+  margin-block: 10px;
+
 }
 
 .last-changed-date {
@@ -87,6 +90,7 @@ downloadFile(file) {
   flex: 1;
   text-decoration: none;
   cursor: pointer;
+  color: var(--dark);
 }
 
 .file-name:hover {
