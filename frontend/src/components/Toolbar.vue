@@ -1,8 +1,8 @@
 <template>
     <div class="toolWrapper">
         <div class="toggleView">
-		    <button @click="show('list')" class="material-icons">list</button>
-            <button @click="show('grid')" class="material-icons">grid_view</button>
+		      <button @click="show('list')" class="material-icons">list</button>
+          <button @click="show('grid')" class="material-icons">grid_view</button>
 	    </div>
         <!-- <button type = "file" class="uploadButton">Datei hochladen</button> -->
         <label class="uploadButton">
@@ -47,7 +47,7 @@ const submitForm = () => {
     const formData = new FormData();
     formData.append('file', file.value);
 
-    axios.post('http://localhost/test-vue/backend/uploadfile.php', formData, {
+    axios.post('http://localhost/PHP-VUEJS-FILE-MANAGER/backend/uploadFile.php', formData, {
       headers: {
         'Content-Type': 'multipart/form-data',
       },
