@@ -1,9 +1,10 @@
 <template>
   <ListStructure msg="Filemanager"/>
+ 
 </template>
 
 <script>
-import ListStructure from './components/listStructure.vue';
+import ListStructure from './components/ListStructure.vue';
 
 export default {
   name: 'App',
