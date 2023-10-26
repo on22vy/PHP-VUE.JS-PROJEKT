@@ -1,22 +1,82 @@
-version: '3'
-services:
-  frontend:
-    build:
-      context: ./docker/client
-    ports:
-      - "8080:8080"
-    volumes:
-      - ./client:/app
+# version: '3'
 
-  backend:
-    build:
-      context: ./docker/server
-    ports:
-      - "80:80"
+# services:
+  
+#   vuejs:
+#     build: ./frontend/Dockerfile
+#     volumes:
+#       - ./frontend:/usr/src/app/
+#     ports:
+#       - "8080:80"
+    
+    
+#     # depends_on: 
+#     #   - mysqldb
+#     # links: 
+#     #   - mysqldb
+
+#   # mysqldb:
+#   #   image: mysql:5.7
+#   #   container_name: mysql-vuejs
+#   #   ports: 
+#   #     - "3306:3306"    
+#   #   networks:
+#   #     mynet:
+#   #       ipv4_address: "172.16.238.11"
+#   #   environment:
+#   #     MYSQL_ROOT_PASSWORD: "root"
+#   #   volumes:
+#   #     - ./mysql:/docker-entrypoint-initdb.d/
+#   #   restart: always
+
+
+
+
+
+
+
+version: '3.8'
+services:
+  php-apache-environment:
+    container_name: php-apache
+    image: php:8.0-apache
     volumes:
-      - ./server:/var/www/html
-    depends_on:
-      - client
+      - ./frontend/src:/var/www/html
+      - ./backend:/var/www/html
+    ports:
+      - 8000:80
+  
+
+  
+  
+
+  
+  # vue:
+  #   image: node:14
+  #   volumes:
+  #     - "./frontend/:/app"
+  #   working_dir: /app
+  #   command: ["npm", "run", "build"]
+  #   ports:
+  #     - 8080:8080
+
+  # frontend:
+  #   build:
+  #     context: ./docker/client
+  #   ports:
+  #     - "8080:8080"
+  #   volumes:
+  #     - ./client:/app
+
+  # backend:
+  #   build:
+  #     context: ./docker/server
+  #   ports:
+  #     - "80:80"
+  #   volumes:
+  #     - ./server:/var/www/html
+  #   depends_on:
+  #     - client
 
   # db:
   #   image: mysql:latest
