@@ -47,7 +47,7 @@ const submitForm = () => {
     const formData = new FormData();
     formData.append('file', file.value);
 
-    axios.post('http://localhost/PHP-VUEJS-FILE-MANAGER/backend/uploadFile.php', formData, {
+    axios.post('http://localhost:8000/php/uploadFile.php', formData, {
       headers: {
         'Content-Type': 'multipart/form-data',
       },
