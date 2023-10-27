@@ -41,10 +41,12 @@ services:
     container_name: php-apache
     image: php:8.0-apache
     volumes:
-      - ./frontend/src:/var/www/html
-      - ./backend:/var/www/html
+      - ./frontend/dist:/var/www/html
+      - ./backend:/var/www/html/php
     ports:
       - 8000:80
+    # environment:
+    #   - upload_max_filesize=10G
   
 
   
