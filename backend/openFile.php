@@ -1,15 +1,24 @@
 <?php
+// openfile.php
 
-$file_path = "uploads/" . $_FILES['file']['name'];
+// Datei aus der Datenbank abrufen
+if (isset($_GET['file_id'])) {
+  $fileId = $_GET['file_id']; // Eindeutige Kennung für die Datei
 
-// Überprüfe den Dateityp der Datei
-$file_type = mime_content_type($file_path);
+  // Hier sollten Sie eine Datenbankabfrage durchführen, um den Dateipfad basierend auf $fileId zu erhalten
+  // Führen Sie die Abfrage aus und erhalten Sie den Dateipfad
 
-if (strpos($file_type, "application/pdf") === 0) {
-    // Wenn die Datei ein PDF ist, zeige sie im Browser an
-    header('Content-Type: application/pdf');
-    readfile($file_path);
-} else {
-    echo "Dies ist keine PDF-Datei.";
+  if ($result) {
+    $file = $result->fetch_assoc();
+    if ($file) {
+      $filePath = $file['file_path'];
+      
+      // Öffnen der Datei im Browser
+      header('Content-type: application/pdf'); // Anpassen des Content-Type je nach Dateityp
+      header('Content-Disposition: inline; filename="' . basename($filePath) . '"');
+      readfile($filePath);
+      exit;
+    }
+  }
 }
 ?>
