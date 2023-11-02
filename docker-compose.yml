@@ -1,98 +1,43 @@
-# version: '3'
-
-# services:
-  
-#   vuejs:
-#     build: ./frontend/Dockerfile
-#     volumes:
-#       - ./frontend:/usr/src/app/
-#     ports:
-#       - "8080:80"
-    
-    
-#     # depends_on: 
-#     #   - mysqldb
-#     # links: 
-#     #   - mysqldb
-
-#   # mysqldb:
-#   #   image: mysql:5.7
-#   #   container_name: mysql-vuejs
-#   #   ports: 
-#   #     - "3306:3306"    
-#   #   networks:
-#   #     mynet:
-#   #       ipv4_address: "172.16.238.11"
-#   #   environment:
-#   #     MYSQL_ROOT_PASSWORD: "root"
-#   #   volumes:
-#   #     - ./mysql:/docker-entrypoint-initdb.d/
-#   #   restart: always
-
-
-
-
-
-
 
 version: '3.8'
 services:
   php-apache-environment:
     container_name: php-apache
-    image: php:8.0-apache
+    # image: php:8.0-apache
+    build:
+      context: ./backend/
+      dockerfile: Dockerfile
+    depends_on:
+      - db
     volumes:
       - ./frontend/dist:/var/www/html
-      - ./backend:/var/www/html/php
+      - ./backend/:/var/www/html/php
     ports:
       - 8000:80
     # environment:
     #   - upload_max_filesize=10G
+  db:
+    container_name: db
+    image: mysql
+    restart: always
+    environment:
+        MYSQL_ROOT_PASSWORD: MYSQL_ROOT_PASSWORD
+        MYSQL_DATABASE: MYSQL_DATABASE
+        MYSQL_USER: MYSQL_USER
+        MYSQL_PASSWORD: MYSQL_PASSWORD
+    ports:
+        - "9906:3306"
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    ports:
+        - '8080:80'
+    restart: always
+    environment:
+        PMA_HOST: db
+    depends_on:
+        - db
+  
   
 
-  
-  
-
-  
-  # vue:
-  #   image: node:14
-  #   volumes:
-  #     - "./frontend/:/app"
-  #   working_dir: /app
-  #   command: ["npm", "run", "build"]
-  #   ports:
-  #     - 8080:8080
-
-  # frontend:
-  #   build:
-  #     context: ./docker/client
-  #   ports:
-  #     - "8080:8080"
-  #   volumes:
-  #     - ./client:/app
-
-  # backend:
-  #   build:
-  #     context: ./docker/server
-  #   ports:
-  #     - "80:80"
-  #   volumes:
-  #     - ./server:/var/www/html
-  #   depends_on:
-  #     - client
-
-  # db:
-  #   image: mysql:latest
-  #   environment:
-  #     - MYSQL_DATABASE=php_vuejs_file_manager
-  #     - MYSQL_USER=php_project
-  #     - MYSQL_PASSWORD=password # this should live in a env var
-  #     - MYSQL_ALLOW_EMPTY_PASSWORD=1 # equivalent to True
-  #   volumes:
-  #     - "./db:/docker-entrypoint-initdb.d" #sync persistent sql files with container
-  # phpmyadmin:
-  #   image: phpmyadmin/phpmyadmin
-  #   ports:
-  #     - 8001:80
-  #   environment:
-  #     - PMA_HOST=db
-  #     - PMA_PORT=3306
+ 
