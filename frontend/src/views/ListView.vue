@@ -1,77 +1,86 @@
+
+<template>
+  <div>
+    <h2>Liste der Dateien</h2>
+    <div class="file-list"></div>
+    <ul>
+      <li v-for="(file, index) in fileList" :key="index" class="file-item">
+        <a :href="file.url" target="_blank" class="file-link">{{ file.name }} </a>
+       
+        <div class="button-group">
+         <span class="downloadButton material-icons" @click="downloadFile(file)">download</span>
+         <span class="deleteButton material-icons" @click="() => deleteFile(file)">delete</span>
+        </div>
+      </li>
+    </ul>
+  </div>
+</template>
+
 <script>
+import axios from 'axios';
+
 export default {
   data() {
     return {
-        files: [
-        {
-          name: "Dokument1.pdf",
-          url: "URL_ZU_PDF1"
-        },
-        {
-          name: "Dokument2.pdf",
-          url: "URL_ZU_PDF2"
-        }
-        // Weitere Dateien
-      ]
+      fileList: [],
     };
   },
-methods: {
-    openFileContent(file) {
-      // Prüfe, ob die Datei eine PDF ist
-      if (file.url.toLowerCase().endsWith('.pdf')) {
-        // Öffne die PDF-Datei in einem neuen Fenster/Tab
-        window.open(file.url, '_blank');
-      } else {
-        // Hier könntest du Logik hinzufügen, um andere Dateitypen zu öffnen oder eine Fehlermeldung anzuzeigen
-        console.log('Dieser Dateityp wird nicht unterstützt.');
+
+  methods: {
+      async fetchFileList() {
+  try {
+    const response = await axios.get('/php/openFile.php'); // Relativer Pfad zur PHP-Datei
+    console.log(response.data); // Überprüfen Sie die Serverantwort
+    const files = response.data;
+    this.fileList = files.map(file => ({
+      name: file,
+      url: `/uploads/${file}`, // Stellen Sie sicher, dass der Pfad zum Upload-Ordner korrekt ist
+    }));
+  } catch (error) {
+    console.error('Fehler beim Abrufen der Dateiliste:', error);
   }
 },
 downloadFile(file) {
-    const a = document.createElement('a');
+  const a = document.createElement('a');
+  
+  // Setzen Sie die URL der ausgewählten Datei (file, nicht this.files)
+  a.href = file.url;
+
+  // Geben Sie der Datei einen Namen für den Download (file.name, nicht selectedFile.name)
+  a.download = file.name;
+
+  // Fügen Sie das Link-Element zum Dokument hinzu
+  document.body.appendChild(a);
+
+  // Klicken Sie auf den Link, um den Download zu starten
+  a.click();
+
+  // Entfernen Sie das Link-Element aus dem Dokument
+  document.body.removeChild(a);
+}
+},
+deleteFile(file) {
       
-      // Finden Sie die ausgewählte Datei im Array (z.B., die erste Datei)
-      const selectedFile = this.files[0];
-
-      // Setzen Sie die URL der ausgewählten Datei
-      a.href = selectedFile.url;
-
-      // Geben Sie der Datei einen Namen für den Download
-      a.download = selectedFile.name;
-
-      // Fügen Sie das Link-Element zum Dokument hinzu
-      document.body.appendChild(a);
-
-      // Klicken Sie auf den Link, um den Download zu starten
-      a.click();
-
-      // Entfernen Sie das Link-Element aus dem Dokument
-      document.body.removeChild(a);
-
-}
-}
-}
+      axios.post('/php/deleteFile.php', { filename: file.name })
+        .then(response => {
+          if (response.data.success) {
+            // Erfolgreich gelöscht, aktualisieren Sie die Dateiliste
+            this.fetchFileList();
+          } else {
+            // Fehler beim Löschen
+            console.error('Fehler beim Löschen der Datei.');
+          }
+        })
+        .catch(error => {
+          console.error('Fehler beim Löschen der Datei:', error);
+        });
+    },
+  
+created() {
+    this.fetchFileList();
+  },
+};
 </script>
-
-
-<template>
-    
-    <h2>List View </h2>
-
-    <div class="file-list">
-    <div v-for="(file, index) in files" :key="index" class="file-item">
-      <a :href="file.url" target="_blank" @click="openFileContent(file)" class="file-name">{{ file.name }}</a>
-      <div class="last-changed-date">{{ file.lastChangedDate }}</div>
-      <div class="user-name">{{ file.userName }}</div>
-
-      <!-- Download-Button -->
-      <span class="downloadButton material-icons" @click=" downloadFile(file)">download</span>
-      
-      <!-- Löschen-Button -->
-      <span class="deleteButton material-icons" @click="() => deleteFile(file)">delete</span>
-    </div>
-  </div>
-
-</template>
 
 <style scoped>
 
@@ -82,6 +91,10 @@ downloadFile(file) {
   margin-left: 10px; /* Füge Abstand zwischen den Buttons und den anderen Elementen hinzu */
 }
 
+.file-link{
+  color: black;
+  flex:1;
+}
 .file-item {
   display: flex;
   width: 100%;
@@ -93,7 +106,11 @@ downloadFile(file) {
   margin-block: 10px;
 
 }
-
+.button-group {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Abstand zwischen den Buttons anpassen */
+}
 .last-changed-date {
   flex: 2;
   text-align: center;
