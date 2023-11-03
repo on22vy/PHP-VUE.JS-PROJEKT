@@ -92,7 +92,7 @@ const onFileSelected = (event) => {
 }
 
 .viewContent {
-    background-color: lightgray;
+    // background-color: lightgray;
     height: 500px;
 }
 
