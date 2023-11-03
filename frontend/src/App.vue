@@ -1,29 +1,3 @@
-<!-- <template>
-  <ListStructure />
- 
-</template>
-
-<script>
-import ListStructure from './components/ListStructure.vue';
-
-export default {
-  name: 'App',
-  components: {
-
-    ListStructure
-}
-}
-</script>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  color: #377bab;
-  margin-top: 0;
-}
-</style> -->
-
-
 <template>
 	<div class="app">
 		<!-- Sidebar -->
@@ -32,6 +6,8 @@ export default {
 		<!-- Content -->
 		<router-view />
 	</div>
+
+	
 </template>
 
 <script setup>
