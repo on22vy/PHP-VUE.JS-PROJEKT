@@ -21,7 +21,7 @@
                       <td class="center">{{ file.filesize }}</td>
                       <td class="right">{{ file.created_date  }}</td>
                       <td class="right">
-                     <button class="downloadButton material-icons">download</button>
+                        <button @click="downloadFile(file)" class="downloadButton material-icons">download</button>
                      <button @click="deleteFile(file.id)" class="deleteButton material-icons">delete</button>
           </td>
                    
@@ -62,6 +62,7 @@
   {
     getAllFiles();
   });
+  
   const deleteFile = (fileId) => {
   axios.delete('http://localhost:8000/php/deleteFile.php', {
     data: {
@@ -77,7 +78,20 @@
       console.error("Fehler beim Löschen der Datei: " + error);
     });
 };
-
+const downloadFile = (file) => {
+    if (file) {
+        const link = document.createElement('a');
+        link.style.display = 'none';
+        link.href = '../'+'php/'+file.path_to_file;
+        link.target = '_blank';
+        link.download = file.filename;
+        
+        document.body.appendChild(link);
+        link.click();
+        
+        document.body.removeChild(link);
+    }
+};
   // const showFile = (path) => {
   //   // Implement a mechanism to display the file when clicked.
   //   // You can open it in a new tab, use a modal, or other approaches.
