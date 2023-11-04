@@ -22,7 +22,7 @@
                       <td class="right">{{ file.created_date  }}</td>
                       <td class="right">
                      <button class="downloadButton material-icons">download</button>
-                      <button class="deleteButton material-icons">delete</button>
+                     <button @click="deleteFile(file.id)" class="deleteButton material-icons">delete</button>
           </td>
                    
                   </tr>
@@ -62,8 +62,21 @@
   {
     getAllFiles();
   });
-
- 
+  const deleteFile = (fileId) => {
+  axios.delete('http://localhost:8000/php/deleteFile.php', {
+    data: {
+      fileId: fileId
+    }
+  })
+    .then((response) => {
+      // Erfolgreich gelöscht: Aktualisiere die Dateiliste, um die gelöschte Datei zu entfernen
+      getAllFiles();
+    })
+    .catch((error) => {
+      // Fehlerbehandlung, falls die Datei nicht gelöscht werden konnte
+      console.error("Fehler beim Löschen der Datei: " + error);
+    });
+};
 
   // const showFile = (path) => {
   //   // Implement a mechanism to display the file when clicked.
