@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory} from "vue-router";
 import Home from '../views/Home.vue'
-import DeletedFiles from '../views/DeletedFiles.vue'
+import DeletedFilesPage from '../views/DeletedFilesPage.vue'
 
 const router = createRouter({
     history: createWebHistory(),
@@ -11,7 +11,7 @@ const router = createRouter({
         },
         {
             path: '/deletedFiles',
-            component: DeletedFiles
+            component: DeletedFilesPage
         }
     ]
     
