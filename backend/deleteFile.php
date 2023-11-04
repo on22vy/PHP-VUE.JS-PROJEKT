@@ -24,9 +24,12 @@ $sql = "DELETE FROM files WHERE id = $fileId";
 if ($mysql->query($sql) === TRUE) {
     // Erfolgreich aus der Datenbank gelöscht
 
-    // Überprüfe, ob die physische Datei auf dem Server vorhanden ist und lösche sie
-    $filePath = 'uploads/' . $fileId; // Passe den Pfad entsprechend an
+    // Pfad zur Datei im Upload-Verzeichnis
+    $uploadDirectory = 'uploads/'; // Hier den Pfad entsprechend anpassen
+    $filePath = $uploadDirectory . $fileId;
+
     if (file_exists($filePath)) {
+        // Datei im Upload-Verzeichnis löschen
         unlink($filePath);
     }
 
