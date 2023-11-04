@@ -8,9 +8,9 @@ header("Access-Control-Allow-Headers: Content-Type");
 require_once('dbconnect.php');
 
 // Option-Anfrage beantworten und beenden, wenn nötig
-if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
-    exit();
-}
+// if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
+//     exit();
+// }
 
 // Daten aus dem Vue.js-Frontend abrufen
 $data = json_decode(file_get_contents("php://input"));
