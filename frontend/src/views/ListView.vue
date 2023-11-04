@@ -4,7 +4,7 @@
           
            <table>
               <thead>
-              <tr>
+                <tr>
                   <th class="left">Filename</th>
                   <th class="center">Filesize</th>
                   <th class="right">Created</th>
@@ -14,16 +14,16 @@
               <tbody>
                   <tr v-for="file in files" :key="file.id">
                     <td class="left">
-                    <a :href="'../'+'php/'+file.path_to_file" target="_blank" class="file-name">
-                      {{ file.filename }}
-                      </a>
-                      </td>
-                      <td class="center">{{ file.filesize }}</td>
-                      <td class="right">{{ file.created_date  }}</td>
-                      <td class="right">
-                     <button class="downloadButton material-icons">download</button>
-                     <button @click="deleteFile(file.id)" class="deleteButton material-icons">delete</button>
-          </td>
+                      <a :href="'../'+'php/'+file.path_to_file" target="_blank" class="file-name">
+                        {{ file.filename }}
+                        </a>
+                        </td>
+                        <td class="center">{{ file.filesize }}</td>
+                        <td class="right">{{ file.created_date  }}</td>
+                        <td class="right">
+                      <button class="downloadButton material-icons">download</button>
+                      <button @click="deleteFile(file.id)" class="deleteButton material-icons">delete</button>
+                    </td>
                    
                   </tr>
 
@@ -63,26 +63,22 @@
     getAllFiles();
   });
   const deleteFile = (fileId) => {
-  axios.delete('http://localhost:8000/php/deleteFile.php', {
-    data: {
-      fileId: fileId
-    }
-  })
-    .then((response) => {
-      // Erfolgreich gelöscht: Aktualisiere die Dateiliste, um die gelöschte Datei zu entfernen
-      getAllFiles();
+    axios.delete('http://localhost:8000/php/deleteFile.php', {
+      data: {
+        fileId: fileId
+      }
     })
-    .catch((error) => {
-      // Fehlerbehandlung, falls die Datei nicht gelöscht werden konnte
-      console.error("Fehler beim Löschen der Datei: " + error);
-    });
-};
+      .then(() => {
+        // Erfolgreich gelöscht: Aktualisiere die Dateiliste, um die gelöschte Datei zu entfernen
+        getAllFiles();
+      })
+      .catch((error) => {
+        // Fehlerbehandlung, falls die Datei nicht gelöscht werden konnte
+        console.error("Fehler beim Löschen der Datei: " + error);
+      });
+  };
 
-  // const showFile = (path) => {
-  //   // Implement a mechanism to display the file when clicked.
-  //   // You can open it in a new tab, use a modal, or other approaches.
-  //   window.open(path, '_blank');
-  // };
+  
 
 </script>
 

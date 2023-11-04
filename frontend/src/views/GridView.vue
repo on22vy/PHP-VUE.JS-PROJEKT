@@ -1,23 +1,6 @@
 <template>
     <!-- <p>Test Grid</p> -->
     <div class="fileView">
-            
-            <!-- <table>
-                <thead>
-                    <th>Filename</th>
-                    <th>Filesize</th>
-                    <th>Created</th>
-                    
-                </thead>
-                <tbody>
-                    <tr v-for="file in files">
-                        <td>{{ file.filename }}</td>
-                        <td>{{ file.filesize }}</td>
-                        <td>{{ file.created_date  }}</td>
-                        
-                    </tr>
-                </tbody>
-            </table> -->
 
         <div class="grid-container">
           <div class="file-box" v-for="file in files">
@@ -63,12 +46,6 @@
     });
 
    
-  
-    // const showFile = (path) => {
-    //   // Implement a mechanism to display the file when clicked.
-    //   // You can open it in a new tab, use a modal, or other approaches.
-    //   window.open(path, '_blank');
-    // };
 </script>
 <style>
 .fileView {
