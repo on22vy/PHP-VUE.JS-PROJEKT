@@ -1,3 +1,6 @@
+/**
+ * @author Thi Tuong Vy Nguyen <thi.nguyen.22@lehre.mosbach.dhbw.de>
+ */
 import { createRouter, createWebHistory} from "vue-router";
 import Home from '../views/Home.vue'
 import DeletedFilesPage from '../views/DeletedFilesPage.vue'
