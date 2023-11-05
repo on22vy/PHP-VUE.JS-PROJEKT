@@ -41,6 +41,6 @@ services:
         - db
   
 volumes:
-  - mysql-data
+  mysql-data:
 
  
