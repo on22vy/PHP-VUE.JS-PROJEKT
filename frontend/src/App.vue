@@ -1,3 +1,10 @@
+<script setup>
+/**
+ * @author Thi Tuong Vy Nguyen <thi.nguyen.22@lehre.mosbach.dhbw.de>
+ */
+import Sidebar from './components/Sidebar.vue'
+</script>
+
 <template>
 	<div class="app">
 		<!-- Sidebar -->
@@ -9,10 +16,6 @@
 
 	
 </template>
-
-<script setup>
-import Sidebar from './components/Sidebar.vue'
-</script>
 
 <style lang="scss">
 :root {
