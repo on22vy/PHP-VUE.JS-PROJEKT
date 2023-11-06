@@ -4,38 +4,38 @@ header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
 header("Access-Control-Allow-Headers: Content-Type");
 
-// Verbindung zur Datenbank herstellen
+// connect with database
 require_once('dbconnect.php');
 
-// Option-Anfrage beantworten und beenden, wenn nötig
+// Answer option request and exit if necessary
 if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
     exit();
 }
 
-// Daten aus dem Vue.js-Frontend abrufen
+// get data from vue.js frontend
 $data = json_decode(file_get_contents("php://input"));
 
-// ID des zu löschenden Eintrags
+// id of the item which should be delete
 $fileId = $data->fileId;
 
-// SQL-Abfrage zum Löschen des Eintrags aus der Datenbank
+// SQL query to delete the entry from the database
 $sql = "DELETE FROM files WHERE id = $fileId";
 
 if ($mysql->query($sql) === TRUE) {
-    // Erfolgreich aus der Datenbank gelöscht
+    // Successfully deleted from the database
 
-    // Pfad zur Datei im Upload-Verzeichnis
-    $uploadDirectory = 'uploads/'; // Hier den Pfad entsprechend anpassen
+    // Path to the file in the upload directory
+    $uploadDirectory = 'uploads/'; 
     $filePath = $uploadDirectory . $fileId;
 
     if (file_exists($filePath)) {
-        // Datei im Upload-Verzeichnis löschen
+        // Delete file in upload directory
         unlink($filePath);
     }
 
     echo json_encode(["message" => "Datei wurde gelöscht"], JSON_PRETTY_PRINT);
 } else {
-    // Fehler beim Löschen in der Datenbank
+    // Error deleting in the database
     echo json_encode(["error" => "Fehler beim Löschen der Datei in der Datenbank"], JSON_PRETTY_PRINT);
 }
 ?>
