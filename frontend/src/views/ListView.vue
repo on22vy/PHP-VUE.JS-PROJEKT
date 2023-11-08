@@ -1,45 +1,7 @@
-<template>
-  <!-- <p>Test Grid</p> -->
-  <div class="fileView">
-          
-           <table>
-              <thead>
-              <tr>
-                  <th class="left">Filename</th>
-                  <th class="center">Filesize</th>
-                  <th class="right">Created</th>
-                  <th class="actionHeader"></th>
-                </tr>
-              </thead>
-              <tbody><!-- A loop through the files in the 'files' list-->
-                  <tr v-for="file in files" :key="file.id">
-                    <td class="left">
-                      
-                    <!-- A link to view or download the file -->
-                    <a :href="'../'+'php/'+file.path_to_file" target="_blank" class="file-name">
-                      {{ file.filename }}
-                      </a>
-                      </td>
-                      <td class="center">{{ file.filesize }}</td>
-                      <td class="right">{{ file.created_date  }}</td>
-                      <td class="right">
-                        
-                    <!-- A button to download the file -->
-                    <button @click="downloadFile(file)" class="downloadButton material-icons">download</button>
-                    <!-- A button to delete the file -->
-                     <button @click="deleteFile(file.id)" class="deleteButton material-icons">delete</button>
-          </td>
-                   
-                  </tr>
-
-              </tbody>
-          </table> 
-
-   
-    </div>
-</template>
-
 <script setup>
+/**
+ * @author Acelya Cagan <acelya.cagan@gmail.com>
+ */
   import axios from 'axios';
   import { ref, onMounted } from 'vue';
 
@@ -109,6 +71,49 @@ const downloadFile = (file) => {
 
 
 </script>
+
+<template>
+  <!-- <p>Test Grid</p> -->
+  <div class="fileView">
+          
+           <table>
+              <thead>
+              <tr>
+                  <th class="left">Filename</th>
+                  <th class="center">Filesize</th>
+                  <th class="right">Created</th>
+                  <th class="actionHeader"></th>
+                </tr>
+              </thead>
+              <tbody><!-- A loop through the files in the 'files' list-->
+                  <tr v-for="file in files" :key="file.id">
+                    <td class="left">
+                      
+                    <!-- A link to view or download the file -->
+                    <a :href="'../'+'php/'+file.path_to_file" target="_blank" class="file-name">
+                      {{ file.filename }}
+                      </a>
+                      </td>
+                      <td class="center">{{ file.filesize }}</td>
+                      <td class="right">{{ file.created_date  }}</td>
+                      <td class="right">
+                        
+                    <!-- A button to download the file -->
+                    <button @click="downloadFile(file)" class="downloadButton material-icons">download</button>
+                    <!-- A button to delete the file -->
+                     <button @click="deleteFile(file.id)" class="deleteButton material-icons">delete</button>
+          </td>
+                   
+                  </tr>
+
+              </tbody>
+          </table> 
+
+   
+    </div>
+</template>
+
+
 
 <style scoped>
 
