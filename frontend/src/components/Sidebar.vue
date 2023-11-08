@@ -1,3 +1,18 @@
+<script setup>
+/**
+ * @author Thi Tuong Vy Nguyen <thi.nguyen.22@lehre.mosbach.dhbw.de>
+ */
+import { ref } from 'vue'
+import logoURL from '../assets/logo.png'
+
+const is_expanded = ref(localStorage.getItem("is_expanded") === "true")
+
+const ToggleMenu = () => {
+	is_expanded.value = !is_expanded.value
+	localStorage.setItem("is_expanded", is_expanded.value)
+}
+</script>
+
 <template>
 	<aside :class="`${is_expanded ? 'is-expanded' : ''}`">
 		<div class="logo">
@@ -28,18 +43,6 @@
 		
 	</aside>
 </template>
-
-<script setup>
-import { ref } from 'vue'
-import logoURL from '../assets/logo.png'
-
-const is_expanded = ref(localStorage.getItem("is_expanded") === "true")
-
-const ToggleMenu = () => {
-	is_expanded.value = !is_expanded.value
-	localStorage.setItem("is_expanded", is_expanded.value)
-}
-</script>
 
 <style lang="scss" scoped>
 aside {

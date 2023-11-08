@@ -10,10 +10,11 @@ header("Access-Control-Allow-Headers: Content-Type");
 // connect with database
 require_once('dbconnect.php');
 
-// Answer option request and exit if necessary
-if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
-    exit();
-}
+// Option-Anfrage beantworten und beenden, wenn nötig
+// if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
+//     exit();
+// }
+
 
 // get data from vue.js frontend
 $data = json_decode(file_get_contents("php://input"));

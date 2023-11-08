@@ -1,33 +1,7 @@
-<template>
-    <div class="toolWrapper">
-        <div class="toggleView">
-		      <button @click="show('list')" class="material-icons">list</button>
-          <button @click="show('grid')" class="material-icons">grid_view</button>
-	    </div>
-        <!-- <button type = "file" class="uploadButton">Datei hochladen</button> -->
-        <label class="uploadButton">
-            <input type="file" style="display: none" ref="file" @change="onFileSelected"/>
-            Datei hochladen
-        </label>
-        
-    </div>
-    <div class="viewContent">
-            <div v-if="activeView === 'list'">
-        <!-- List View Content -->
-                <ListView/>
-        
-            </div>
-            
-            <div v-else-if="activeView === 'grid'">
-        <!-- Grid View Content -->
-                <GridView/>
-       
-            </div>  
-    </div>
-	
-</template>
-
 <script setup>
+/**
+ * @author Thi Tuong Vy Nguyen <thi.nguyen.22@lehre.mosbach.dhbw.de>
+ */
 import ListView from '../views/ListView.vue'
 import GridView from '../views/GridView.vue'
 import { ref } from 'vue'
@@ -70,6 +44,35 @@ const onFileSelected = (event) => {
 };
 
 </script>
+
+<template>
+    <div class="toolWrapper">
+        <div class="toggleView">
+		      <button @click="show('list')" class="material-icons">list</button>
+          <button @click="show('grid')" class="material-icons">grid_view</button>
+	    </div>
+        <!-- <button type = "file" class="uploadButton">Datei hochladen</button> -->
+        <label class="uploadButton">
+            <input type="file" style="display: none" ref="file" @change="onFileSelected"/>
+            Datei hochladen
+        </label>
+        
+    </div>
+    <div class="viewContent">
+            <div v-if="activeView === 'list'">
+        <!-- List View Content -->
+                <ListView/>
+        
+            </div>
+            
+            <div v-else-if="activeView === 'grid'">
+        <!-- Grid View Content -->
+                <GridView/>
+       
+            </div>  
+    </div>
+	
+</template>
 
 <style lang="scss">
 .toolWrapper {

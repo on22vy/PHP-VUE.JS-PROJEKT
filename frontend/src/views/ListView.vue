@@ -35,6 +35,7 @@
   });
 //Function to delte the file
   const deleteFile = (fileId) => {
+
   axios.delete('http://localhost:8000/php/deleteFile.php', {
     data: {
       fileId: fileId
@@ -68,7 +69,6 @@ const downloadFile = (file) => {
         document.body.removeChild(link);
     }
 };
-
 
 </script>
 

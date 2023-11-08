@@ -1,23 +1,39 @@
+<script setup>
+/**
+ * @author Thi Tuong Vy Nguyen <thi.nguyen.22@lehre.mosbach.dhbw.de>
+ */
+  import axios from 'axios';
+  import { ref, onMounted } from 'vue';
+
+  const files = ref("");
+
+  
+
+  const getAllFiles = () => {
+    axios.get('http://localhost:8000/php/getFilesList.php', {
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    })
+    .then((response) => {
+        files.value = response.data
+        setTimeout(getAllFiles, 1000);
+    })
+    .catch(function(error){
+        console.error("Failed to fetch data", error)
+    });
+  }
+  
+  
+  onMounted(()=>
+  {
+    getAllFiles();
+  });
+</script>
+
 <template>
     <!-- <p>Test Grid</p> -->
     <div class="fileView">
-            
-            <!-- <table>
-                <thead>
-                    <th>Filename</th>
-                    <th>Filesize</th>
-                    <th>Created</th>
-                    
-                </thead>
-                <tbody>
-                    <tr v-for="file in files">
-                        <td>{{ file.filename }}</td>
-                        <td>{{ file.filesize }}</td>
-                        <td>{{ file.created_date  }}</td>
-                        
-                    </tr>
-                </tbody>
-            </table> -->
 
         <div class="grid-container">
           <div class="file-box" v-for="file in files">
@@ -33,44 +49,7 @@
       </div>
 </template>
   
-<script setup>
-    import axios from 'axios';
-    import { ref, onMounted } from 'vue';
-  
-    const files = ref("");
-
-    
-
-    const getAllFiles = () => {
-      axios.get('http://localhost:8000/php/getFilesList.php', {
-        headers: {
-          'Content-Type': 'application/json',
-        }
-      })
-      .then((response) => {
-          files.value = response.data
-          setTimeout(getAllFiles, 1000);
-      })
-      .catch(function(error){
-          console.error("Failed to fetch data", error)
-      });
-    }
-    
-    
-    onMounted(()=>
-    {
-      getAllFiles();
-    });
-
-   
-  
-    // const showFile = (path) => {
-    //   // Implement a mechanism to display the file when clicked.
-    //   // You can open it in a new tab, use a modal, or other approaches.
-    //   window.open(path, '_blank');
-    // };
-</script>
-<style>
+<style scoped>
 .fileView {
   display: flex;
   justify-content: center;

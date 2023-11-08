@@ -1,3 +1,10 @@
+<script setup>
+/**
+ * @author Thi Tuong Vy Nguyen <thi.nguyen.22@lehre.mosbach.dhbw.de>
+ */
+import Toolbar from '../components/Toolbar.vue'
+</script>
+
 <template>
     <main class="homePage">
        <h1>Home</h1>
@@ -11,12 +18,9 @@
        </div>
    
     </main>
-   </template>
-   <script setup>
-   import Toolbar from '../components/Toolbar.vue'
-   </script>
-   
-   <style scoped>
-   
-   </style>
+</template>
+
+<style scoped>
+
+</style>
    
