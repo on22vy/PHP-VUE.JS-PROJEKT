@@ -1,0 +1,12 @@
+BEGIN;
+USE `MYSQL_DATABASE`;
+
+DROP TABLE IF EXISTS files;
+CREATE TABLE files (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    filename VARCHAR(255) NOT NULL,
+    filesize INT NOT NULL,
+    created_date DATETIME NOT NULL,
+    path_to_file VARCHAR(255) NOT NULL
+);
+COMMIT;
