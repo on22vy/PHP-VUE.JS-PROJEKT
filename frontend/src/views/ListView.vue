@@ -35,7 +35,6 @@
   });
 //Function to delte the file
   const deleteFile = (fileId) => {
-
   axios.delete('http://localhost:8000/php/deleteFile.php', {
     data: {
       fileId: fileId
@@ -67,8 +66,25 @@ const downloadFile = (file) => {
         
         //Remove the link
         document.body.removeChild(link);
-    }
+    }};
+    const renameFile = (file) => {
+  const newFilename = prompt("Neuer Dateiname:", file.filename);
+
+  if (newFilename) {
+    axios.put('http://localhost:8000/php/renameFile.php', {
+      file_id: file.id,
+      new_filename: newFilename
+    })
+    .then((response) => {
+      console.log(response); // Hier die Serverantwort ausgeben
+      getAllFiles();
+    })
+    .catch((error) => {
+      console.error("Fehler beim Umbenennen der Datei: " + error);
+    });
+  }
 };
+
 
 </script>
 
@@ -102,6 +118,8 @@ const downloadFile = (file) => {
                     <button @click="downloadFile(file)" class="downloadButton material-icons">download</button>
                     <!-- A button to delete the file -->
                      <button @click="deleteFile(file.id)" class="deleteButton material-icons">delete</button>
+                     <button @click="renameFile(file)" class="renameButton material-icons">create</button>
+
           </td>
                    
                   </tr>
@@ -123,6 +141,11 @@ const downloadFile = (file) => {
   margin-left: 10px; /* Add some space between the icons and elements */
 }
 .deleteButton {
+  cursor: pointer;
+  padding: 5px; /* Add some space to the icons */
+  margin-left: 10px; /* Add some space between the icons and elements */
+}
+.renameButton {
   cursor: pointer;
   padding: 5px; /* Add some space to the icons */
   margin-left: 10px; /* Add some space between the icons and elements */
