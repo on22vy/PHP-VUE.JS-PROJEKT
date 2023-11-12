@@ -2,17 +2,12 @@
 /**
  * @author Thi Tuong Vy Nguyen <thi.nguyen.22@lehre.mosbach.dhbw.de>
  */
-import Sidebar from './components/Sidebar.vue'
 </script>
 
 <template>
-	<div class="app">
-		<!-- Sidebar -->
-		<Sidebar />
-
-		<!-- Content -->
-		<router-view />
-	</div>
+	<!-- Content -->
+	<router-view />
+	
 
 	
 </template>
@@ -52,16 +47,5 @@ button {
 
 }
 
-.app {
-	display: flex;
 
-	main {
-		flex: 1 1 0;
-		padding: 2rem;
-
-		@media (max-width: 1024px) {
-			padding-left: 6rem;
-		}
-	}
-}
 </style>
