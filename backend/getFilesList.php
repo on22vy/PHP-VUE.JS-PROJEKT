@@ -4,7 +4,7 @@
  */
 require_once('dbconnect.php');
 
-$sql = "select * from files";
+$sql = "SELECT * FROM files";
 $query = $mysql->query($sql);
 $files = array();
 
