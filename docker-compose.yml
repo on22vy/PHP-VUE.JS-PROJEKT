@@ -12,10 +12,10 @@ services:
     volumes:
       - ./frontend/dist:/var/www/html
       - ./backend/:/var/www/html/php
+      - ./config/php:/usr/local/etc/
     ports:
       - 8000:80
-    # environment:
-    #   - upload_max_filesize=10G
+   
   db:
     container_name: db
     image: mysql
