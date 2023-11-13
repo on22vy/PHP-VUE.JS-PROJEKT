@@ -18,7 +18,7 @@
 	--primary-alt: #22c55e;
 	--grey: #64748b;
 	--dark: #1e293b;
-	--light-grey:#F2F6FC;
+	--light-grey:#ccc;
 	--dark-alt: #334155;
 	--light: #ffffff;
 	--sidebar-width: 300px;
