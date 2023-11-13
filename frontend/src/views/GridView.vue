@@ -169,7 +169,7 @@
 
 .file-box {
   border-radius: 5px;
-  background-color: var(--light-grey);
+  background-color: #E4E4E4;
   padding: 10px;
   transition: background-color 0.2s;
   display: flex;
@@ -180,7 +180,7 @@
 }
 
 .file-box:hover {
-  background-color: #E4E4E4;
+  background-color: var(--light-grey);
 }
 
 .action-container {
@@ -256,8 +256,7 @@
 .delete-btn:hover, 
 .download-btn:hover,
 .rename-btn:hover{
-  background-color: var(--grey);
-  color: var(--light);
+  background-color: var(--light-grey);
 }
 
 .file-details {
