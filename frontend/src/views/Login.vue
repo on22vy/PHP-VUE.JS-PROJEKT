@@ -46,7 +46,7 @@
           logDetails.value = { username: '', password: '' }
           setTimeout(() => {
             router.push({ name: 'Home'});
-          }, 1000)
+          }, 3000)
         }
       }
     )
@@ -94,13 +94,13 @@
               </div> 
 
               <div class="alert alert-danger text-center" v-if="errorMessage">
-                <button type="button" class="close" @click="clearMessage();"><span aria-hidden="true">×</span></button>
-                <span class="glyphicon glyphicon-alert"></span> {{ errorMessage }}
+                <span class="material-icons">warning</span> {{ errorMessage }}
+                <button type="button" class="close" @click="clearMessage();"><span aria-hidden="true" class="material-icons">close</span></button>
               </div>
 
               <div class="alert alert-success text-center" v-if="successMessage">
-                <button type="button" class="close" @click="clearMessage();"><span aria-hidden="true">×</span></button>
-                <span class="glyphicon glyphicon-check"></span> {{ successMessage }}
+                <span class="material-icons">check_circle</span> {{ successMessage }}
+                <button type="button" class="close" @click="clearMessage();"><span aria-hidden="true" class="material-icons">close</span></button>
               </div>
 
             </div> 
@@ -259,6 +259,31 @@ section .signin .content .form .inputBox i
 .loginSubmit:active
 {
   opacity: 0.6;
+}
+
+.alert {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border-radius: 4px;
+  margin-top: 10px;
+  font-size: 0.8em;
+  color: #fff;
+}
+
+.alert.alert-danger {
+  background: #ff4d4d;
+}
+
+.alert.alert-success {
+  background: var(--primary);
+}
+
+.alert .close {
+  cursor: pointer;
+  background-color: transparent;
 }
 
 </style>
