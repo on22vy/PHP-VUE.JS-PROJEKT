@@ -2,17 +2,12 @@
 /**
  * @author Thi Tuong Vy Nguyen <thi.nguyen.22@lehre.mosbach.dhbw.de>
  */
-import Sidebar from './components/Sidebar.vue'
 </script>
 
 <template>
-	<div class="app">
-		<!-- Sidebar -->
-		<Sidebar />
-
-		<!-- Content -->
-		<router-view />
-	</div>
+	<!-- Content -->
+	<router-view />
+	
 
 	
 </template>
@@ -23,8 +18,9 @@ import Sidebar from './components/Sidebar.vue'
 	--primary-alt: #22c55e;
 	--grey: #64748b;
 	--dark: #1e293b;
+	--light-grey:#ccc;
 	--dark-alt: #334155;
-	--light: #f1f5f9;
+	--light: #ffffff;
 	--sidebar-width: 300px;
 }
 
@@ -32,7 +28,8 @@ import Sidebar from './components/Sidebar.vue'
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
-	font-family: 'Fira sans', sans-serif;
+	font-family: 'Quicksand', sans-serif;
+	font-weight: 500;
 }
 
 body {
@@ -48,19 +45,9 @@ button {
   border-radius: 5px;
   cursor: pointer;
   font-size: 16px;
+  font-weight: 700;
 
 }
 
-.app {
-	display: flex;
 
-	main {
-		flex: 1 1 0;
-		padding: 2rem;
-
-		@media (max-width: 1024px) {
-			padding-left: 6rem;
-		}
-	}
-}
 </style>

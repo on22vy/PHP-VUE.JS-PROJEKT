@@ -67,13 +67,14 @@ const downloadFile = (file) => {
         //Remove the link
         document.body.removeChild(link);
     }};
-    const renameFile = (file) => {
+
+const renameFile = (file) => {
   const newFilename = prompt("Neuer Dateiname:", file.filename);
 
   if (newFilename) {
     axios.put('http://localhost:8000/php/renameFile.php', {
-      file_id: file.id,
-      new_filename: newFilename
+      fileId: file.id,
+      newFilename: newFilename
     })
     .then((response) => {
       console.log(response); // Hier die Serverantwort ausgeben
@@ -171,6 +172,7 @@ const downloadFile = (file) => {
     text-align: left; /*  Align text left  */
     padding: 8px; /* Padding for cells */
     background-color: #ccc; 
+    font-weight: 700;
 
   }
   td {

@@ -20,32 +20,32 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
 $data = json_decode(file_get_contents("php://input"));
 
 // check whether all required data has been passed
-if (isset($data->file_id) && isset($data->new_filename)) {
-    $fileId = $data->file_id;
-    $newFilename = $data->new_filename;
+if (isset($data->fileId) && isset($data->newFilename)) {
+    $fileId = $data->fileId;
+    $newFilename = $data->newFilename;
 
     // SQL statement to update the file name in the database
-    $updateQuery = "UPDATE files SET filename = ? WHERE id = ?";
+    $sql = "UPDATE files SET filename = ? WHERE id = ?";
 
     // Prepare the SQL statement
-    $stmt = $mysql->prepare($updateQuery);
+    $test = $mysql->prepare($sql);
 
     // Check whether the preparation was successful
-    if ($stmt === false) {
+    if ($test === false) {
         die("Vorbereitung des SQL-Statements ist fehlgeschlagen: " . $mysql->error);
     }
 
     // Bind the parameters and execute the statement
-    $stmt->bind_param('si', $newFilename, $fileId);
+    $test->bind_param('si', $newFilename, $fileId);
 
-    if ($stmt->execute()) {
+    if ($test->execute()) {
         echo json_encode(["message" => "Dateiname erfolgreich aktualisiert"], JSON_PRETTY_PRINT);
     } else {
-        echo json_encode(["error" => "Fehler beim Aktualisieren des Dateinamens: " . $stmt->error], JSON_PRETTY_PRINT);
+        echo json_encode(["error" => "Fehler beim Aktualisieren des Dateinamens: " . $test->error], JSON_PRETTY_PRINT);
     }
 
     // close the statement
-    $stmt->close();
+    $test->close();
 } else {
     echo json_encode(["error" => "Ungültige Anfrage. Es wurden nicht alle erforderlichen Daten übergeben."], JSON_PRETTY_PRINT);
 }

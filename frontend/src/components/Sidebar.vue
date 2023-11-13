@@ -27,14 +27,14 @@ const ToggleMenu = () => {
 
 		<h3>Menu</h3>
 		<div class="menu">
-			<router-link to="/" class="button">
+			<router-link to="/home" class="button">
 				<span class="material-icons">folder_open</span>
 				<span class="text">Meine Ablage</span>
 			</router-link>
-			<router-link to="/deletedFiles" class="button">
+			<!-- <router-link to="/deletedFiles" class="button">
 				<span class="material-icons">delete</span>
 				<span class="text">Gelöschte Dateien</span>
-			</router-link>
+			</router-link> -->
 			
 		</div>
 

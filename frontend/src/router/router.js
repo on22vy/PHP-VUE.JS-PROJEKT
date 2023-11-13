@@ -2,20 +2,23 @@
  * @author Thi Tuong Vy Nguyen <thi.nguyen.22@lehre.mosbach.dhbw.de>
  */
 import { createRouter, createWebHistory} from "vue-router";
+import Login from '../views/Login.vue'
 import Home from '../views/Home.vue'
-import DeletedFilesPage from '../views/DeletedFilesPage.vue'
 
 const router = createRouter({
     history: createWebHistory(),
     routes: [
         {
+            name: 'Login',
             path: '/',
-            component: Home
+            component: Login
         },
         {
-            path: '/deletedFiles',
-            component: DeletedFilesPage
-        }
+            name: 'Home',
+            path: '/home',
+            component: Home
+        },
+        
     ]
     
 })
