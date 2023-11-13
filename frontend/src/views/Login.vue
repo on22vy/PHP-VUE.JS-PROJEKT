@@ -2,49 +2,96 @@
 /**
  * @author Thi Tuong Vy Nguyen <thi.nguyen.22@lehre.mosbach.dhbw.de>
  */
-   
+
+  import { ref } from 'vue';
+  import axios from 'axios';
+  import { useRouter } from 'vue-router';
+
+  const router = useRouter();
+  const successMessage = ref('');
+  const errorMessage = ref('');
+  const logDetails = ref({ username: '', password: '' });
+
+  const keymonitor = () => { 
+        checkLogin();
+  }
+
+  const checkLogin = () => {
+    const logForm = toFormData(logDetails.value)
+    axios.post('http://localhost:8000/php/login.php', logForm)
+      .then((response) => {
+        if (response.data.error) {
+          errorMessage.value = response.data.message
+        } else {
+          successMessage.value = response.data.message
+          logDetails.value = { username: '', password: '' }
+          setTimeout(() => {
+            router.push({ name: 'Home'});
+          }, 1000)
+        }
+      })
+  }
+
+  const toFormData = (obj) => {
+    const form_data = new FormData()
+    for (const key in obj) {
+      form_data.append(key, obj[key])
+    }
+    return form_data
+  }
+
+  const clearMessage = () => {
+    errorMessage.value = '';
+    successMessage.value = '';
+  }
+
 </script>
 
 <template>
 	
-    <body> 
+  <body> 
 
     <section> 
 
-    <form method="POST" class="signin" @submit.prevent="login"> 
+      <form method="POST" class="signin" @submit.prevent="login"> 
 
-        <div class="content"> 
+          <div class="content"> 
 
-        <h2>Sign In</h2> 
+            <h2>Sign In</h2> 
 
-        <div class="form"> 
+            <div class="form"> 
 
-        <div class="inputBox"> 
+              <div class="inputBox"> 
+                <input type="text" name="username" v-model="logDetails.username" @keyup.enter="keymonitor()" required> <i>Username</i> 
+              </div> 
 
-        <input type="text" name="username" ref="username" required> <i>Username</i> 
+              <div class="inputBox"> 
+                <input type="password" name="password" v-model="logDetails.password" @keyup.enter="keymonitor()" required> <i>Password</i> 
+              </div> 
 
-        </div> 
+              <div class="inputBox"> 
+                <button type="submit" name="login" class="loginSubmit" @click="checkLogin()">Login</button>
+              </div> 
 
-        <div class="inputBox"> 
+              <div class="alert alert-danger text-center" v-if="errorMessage">
+                <button type="button" class="close" @click="clearMessage();"><span aria-hidden="true">×</span></button>
+                <span class="glyphicon glyphicon-alert"></span> {{ errorMessage }}
+              </div>
 
-        <input type="password" name="password" ref="p" required> <i>Password</i> 
+              <div class="alert alert-success text-center" v-if="successMessage">
+                <button type="button" class="close" @click="clearMessage();"><span aria-hidden="true">×</span></button>
+                <span class="glyphicon glyphicon-check"></span> {{ successMessage }}
+              </div>
 
-        </div> 
+            </div> 
 
-        <div class="inputBox"> 
-            <button type="submit" name="login" class="loginSubmit" @click="login()">Login</button>
+          </div> 
 
-        </div> 
-
-        </div> 
-
-        </div> 
-
-    </form> 
+      </form> 
 
     </section>
 
-    </body>
+  </body>
 </template>
 <style scoped>
 *{
