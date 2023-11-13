@@ -53,8 +53,9 @@ const onFileSelected = (event) => {
 	    </div>
         <!-- <button type = "file" class="uploadButton">Datei hochladen</button> -->
         <label class="uploadButton">
+            <span class="material-icons">cloud_upload</span>
             <input type="file" style="display: none" ref="file" @change="onFileSelected"/>
-            Datei hochladen
+            File Upload
         </label>
         
     </div>
@@ -97,6 +98,7 @@ const onFileSelected = (event) => {
 .viewContent {
     // background-color: lightgray;
     height: 500px;
+    margin-top: 20px;
 }
 
 .uploadButton {
@@ -110,6 +112,12 @@ const onFileSelected = (event) => {
     border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
+    font-weight: 700;
+    display: flex; 
+    align-items: center;
+}
+.uploadButton .material-icons {
+  margin-right: 10px; /* Add space between icon and text */
 }
 
 /* Responsive styles */
