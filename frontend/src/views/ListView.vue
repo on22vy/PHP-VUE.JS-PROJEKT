@@ -218,7 +218,7 @@ th.actionHeader {
   font-size: 16px; /* Default font size for created date */
 }
 /* Mobile Styles */
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 768px) {
   th, td {
     padding: 5px;
   }
