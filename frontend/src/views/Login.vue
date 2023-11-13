@@ -42,7 +42,7 @@
           logDetails.value = { username: '', password: '' }
           setTimeout(() => {
             router.push({ name: 'Home'});
-          }, 3000)
+          }, 2000)
         }
       }
     )
