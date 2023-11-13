@@ -9,10 +9,12 @@ const router = createRouter({
     history: createWebHistory(),
     routes: [
         {
+            name: 'Login',
             path: '/',
             component: Login
         },
         {
+            name: 'Home',
             path: '/home',
             component: Home
         },
