@@ -31,10 +31,6 @@
         });
   }
 
-  const keymonitor = () => { 
-        checkLogin();
-  }
-
   const checkLogin = () => {
     const logForm = toFormData(logDetails.value);
     axios.post('http://localhost:8000/php/login.php', logForm)
@@ -82,11 +78,11 @@
             <div class="form"> 
 
               <div class="inputBox"> 
-                <input type="text" name="username" v-model="logDetails.username" @keyup.enter="keymonitor()" required> <i>Username</i> 
+                <input type="text" name="username" v-model="logDetails.username" required> <i>Username</i> 
               </div> 
 
               <div class="inputBox"> 
-                <input type="password" name="password" v-model="logDetails.password" @keyup.enter="keymonitor()" required> <i>Password</i> 
+                <input type="password" name="password" v-model="logDetails.password" required> <i>Password</i> 
               </div> 
 
               <div class="inputBox"> 
