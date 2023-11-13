@@ -3,7 +3,7 @@
  * @author Thi Tuong Vy Nguyen <thi.nguyen.22@lehre.mosbach.dhbw.de>
  */
 
-  import { ref } from 'vue';
+  import { ref, onMounted } from 'vue';
   import axios from 'axios';
   import { useRouter } from 'vue-router';
 
@@ -12,12 +12,31 @@
   const errorMessage = ref('');
   const logDetails = ref({ username: '', password: '' });
 
+  onMounted(() => {
+    checkSession();
+  });
+  
+  // Function to check if a session exists
+  const checkSession = () => {
+      axios.get('http://localhost:8000/php/checkSession.php') 
+        .then((response) => {
+          if (response.data.user) {
+            // If the session exists, navigate to the 'Home' page
+            router.push({ name: 'Home' });
+          }
+        })
+        .catch((error) => {
+          // Handle any errors...
+          console.error(error);
+        });
+  }
+
   const keymonitor = () => { 
         checkLogin();
   }
 
   const checkLogin = () => {
-    const logForm = toFormData(logDetails.value)
+    const logForm = toFormData(logDetails.value);
     axios.post('http://localhost:8000/php/login.php', logForm)
       .then((response) => {
         if (response.data.error) {
@@ -29,7 +48,8 @@
             router.push({ name: 'Home'});
           }, 1000)
         }
-      })
+      }
+    )
   }
 
   const toFormData = (obj) => {
