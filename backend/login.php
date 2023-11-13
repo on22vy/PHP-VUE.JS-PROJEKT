@@ -26,7 +26,7 @@
         if($query->num_rows>0){
             $row=$query->fetch_array();
             $_SESSION['user']=$row['id'];
-            $out['message'] = "Login Successful. Please wait! Redirecting...";
+            $out['message'] = "Login Successful. Redirecting...";
         }
         else{
             $out['error'] = true;
