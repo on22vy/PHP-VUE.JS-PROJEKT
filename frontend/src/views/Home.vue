@@ -49,7 +49,10 @@
       <div class="content">
         <div class="welcome-container">
           <h1>👋 Welcome back, {{ username }}!</h1>
-          <button @click="logout()" class="logout-button">Logout</button>
+          <button @click="logout()" class="logout-button">
+            <span class="material-icons logout-button">logout</span>
+            Logout
+          </button>
         </div>
         <div class="tools">
           <!-- Toolbar -->
@@ -84,8 +87,25 @@
   margin: 2rem;
 }
 
-h1{
+
+.welcome-container {
   margin-top: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.logout-button{
+  background-color: var(--light-grey);
+  color: var(--dark);
+  display: flex; 
+  align-items: center;
+  font-weight: 600;
+}
+
+.logout-button .material-icons {
+  margin-right: 5px; /* Add space between icon and text */
 }
 
 </style>
