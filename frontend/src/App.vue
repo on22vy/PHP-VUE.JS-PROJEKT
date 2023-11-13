@@ -28,7 +28,8 @@
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
-	font-family: 'Fira sans', sans-serif;
+	font-family: 'Quicksand', sans-serif;
+	font-weight: 500;
 }
 
 body {
@@ -44,6 +45,7 @@ button {
   border-radius: 5px;
   cursor: pointer;
   font-size: 16px;
+  font-weight: 700;
 
 }
 
