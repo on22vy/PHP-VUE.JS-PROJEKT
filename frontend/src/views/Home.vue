@@ -2,11 +2,14 @@
 /**
  * @author Thi Tuong Vy Nguyen <thi.nguyen.22@lehre.mosbach.dhbw.de>
  */
-  import Toolbar from '../components/Toolbar.vue'
-  import Sidebar from '../components/Sidebar.vue'
+  import Toolbar from '../components/Toolbar.vue';
+  import Sidebar from '../components/Sidebar.vue';
   import axios from 'axios';
   import {onMounted, ref} from 'vue';
-  
+  import { useRouter } from 'vue-router';
+
+  const router = useRouter();
+
   const username = ref('');
 
   const response = () => {
@@ -18,6 +21,17 @@
         console.error(error);
       }    
     })
+  }
+
+  const logout = () => {
+    axios.get('http://localhost:8000/php/logout.php')
+      .then(() => {
+        // After successful logout, navigate to the login page
+        router.push({ name: 'Login' });
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   }
 
   onMounted(()=>
@@ -35,6 +49,7 @@
       <div class="content">
         <div class="welcome-container">
           <h1>👋 Welcome back, {{ username }}!</h1>
+          <button @click="logout()" class="logout-button">Logout</button>
         </div>
         <div class="tools">
           <!-- Toolbar -->
