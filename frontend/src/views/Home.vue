@@ -42,71 +42,92 @@
 </script>
 
 <template>
-    <main class="homePage">
-       
-       <!-- Sidebar -->
-		  <Sidebar />
-      <div class="content">
-        <div class="welcome-container">
-          <h1>👋 Welcome back, {{ username }}!</h1>
-          <button @click="logout()" class="logout-button">
-            <span class="material-icons logout-button">logout</span>
-            Logout
-          </button>
-        </div>
-        <div class="tools">
-          <!-- Toolbar -->
-          <Toolbar />
-       </div>
-       <div class="filesContainer">
-          <!-- Entweder FileStructur oder Kachel -->
-       </div>
+  <main class="homePage">
+    <!-- Sidebar -->
+    <Sidebar />
+    <div class="content">
+      <div class="welcome-container">
+        <h1 class="welcome-text">👋 Welcome back, {{ username }}!</h1>
+        <button @click="logout()" class="logout-button">
+          <span class="material-icons logout-icon">logout</span>
+          Logout
+        </button>
       </div>
-       
-   
-    </main>
+      <div class="tools">
+        <!-- Toolbar -->
+        <Toolbar />
+      </div>
+      <div class="filesContainer">
+        <!-- Entweder FileStructur oder Kachel -->
+      </div>
+    </div>
+  </main>
 </template>
 
 <style scoped>
 .homePage {
   display: flex;
-  :is(main) {
-		flex: 1 1 0;
-		padding: 2rem;
+  flex-direction: column;
 
-		@media (max-width: 1024px) {
-			padding-left: 6rem;
-		}
-	}
+  @media (min-width: 768px) {
+    flex-direction: row;
+  }
 }
 
 .content {
-  display: flex;
-  flex-direction: column;
   flex: 1; /* Take remaining space */
   margin: 2rem;
 }
 
-
 .welcome-container {
   margin-top: 1.5rem;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 1rem;
 }
 
-.logout-button{
+.logout-button {
   background-color: var(--light-grey);
   color: var(--dark);
-  display: flex; 
+  display: flex;
   align-items: center;
   font-weight: 600;
+  margin-top: 1rem;
+  order: -1; /* Ändere die Reihenfolge für die mobile Version */
+
 }
 
-.logout-button .material-icons {
+.logout-icon {
   margin-right: 5px; /* Add space between icon and text */
 }
 
+@media (max-width: 768px) {
+  .homePage {
+    flex-direction: row;
+  }
+
+  .content {
+    margin: 2rem;
+  flex-direction: row; /* Ändere die Richtung auf Zeilen für größere Bildschirme */
+  }
+  .logout-button {
+    margin-top: 0.5rem; /* Passe den Abstand nach oben an */
+    position: absolute;
+    top:0;
+    right:0;
+  }
+
+
+  .welcome-container {
+    order: 1; /* Setze die Reihenfolge für größere Bildschirme zurück */
+  }
+  .welcome-text {
+    margin-bottom: 2rem; /* Füge eine Leerzeile nach dem Welcome-Text hinzu */
+  }
+}
+
+
+
 </style>
-   
