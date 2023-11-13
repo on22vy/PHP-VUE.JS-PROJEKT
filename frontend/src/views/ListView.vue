@@ -172,6 +172,7 @@ const renameFile = (file) => {
     text-align: left; /*  Align text left  */
     padding: 8px; /* Padding for cells */
     background-color: #ccc; 
+    font-weight: 700;
 
   }
   td {
