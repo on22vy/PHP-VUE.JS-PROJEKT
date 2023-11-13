@@ -5,14 +5,14 @@
 </script>
 
 <template>
-	<!-- Content -->
+	<!-- The main template for the application -->
+	<!-- This is where the content of app will be displayed. -->
 	<router-view />
-	
-
-	
+		
 </template>
 
 <style lang="scss">
+/* Define custom CSS variables */
 :root {
 	--primary: #4ade80;
 	--primary-alt: #22c55e;
@@ -24,6 +24,7 @@
 	--sidebar-width: 300px;
 }
 
+/* Global CSS styles */
 * {
 	margin: 0;
 	padding: 0;
