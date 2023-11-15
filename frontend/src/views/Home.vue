@@ -95,7 +95,7 @@
   align-items: center;
   font-weight: 600;
   margin-top: 1rem;
-  order: -1; /* Ändere die Reihenfolge für die mobile Version */
+  order: -1; 
 
 }
 
@@ -110,10 +110,10 @@
 
   .content {
     margin: 2rem;
-  flex-direction: row; /* Ändere die Richtung auf Zeilen für größere Bildschirme */
+  flex-direction: row; 
   }
   .logout-button {
-    margin-top: 0.5rem; /* Passe den Abstand nach oben an */
+    margin-top: 0.5rem; 
     position: absolute;
     top:0;
     right:0;
@@ -121,10 +121,12 @@
 
 
   .welcome-container {
-    order: 1; /* Setze die Reihenfolge für größere Bildschirme zurück */
+    order: 1; 
   }
   .welcome-text {
-    margin-bottom: 2rem; /* Füge eine Leerzeile nach dem Welcome-Text hinzu */
+    margin-bottom: 2rem; 
+    margin-left: calc(2rem + 32px);
+
   }
 }
 
