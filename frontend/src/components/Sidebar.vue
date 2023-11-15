@@ -55,12 +55,11 @@ aside {
 	width: calc(2rem + 32px);
 	overflow: hidden;
 	min-height: 100vh;
-  	position: fixed;
-  	top: 0;
-	padding: 1rem;
+	padding:1rem;
 
 	transition: 0.2s ease-in-out;
 
+	
 	.flex {
 		flex: 1 1 0%;
 	}
@@ -167,6 +166,7 @@ aside {
 
 	&.is-expanded {
 		width: var(--sidebar-width);
+		z-index: 2;
 
 		.menu-toggle-wrap {
 			justify-content: flex-end;
@@ -178,7 +178,7 @@ aside {
 				transform: rotate(-180deg);
 			}
 		}
-
+	
 		h3, .button .text {
 			opacity: 1;
 		}
@@ -194,13 +194,10 @@ aside {
 		}
 	}
 
-	@media (max-width: 768px) {
- 	 aside {
-    	position: fixed;
-   		z-index: 99;
-    	min-height: 100vh;
-   		top: 0;
-  }
-}
+	@media (max-width: 1024px) {
+		position: fixed;
+		z-index: 99;
+		
+	}
 }
 </style>
