@@ -5,7 +5,7 @@
 // Include the database connection
 session_start();
 // Include the database connection file
-include("dbconnect.php");
+require_once("dbconnect.php");
 
 // Check if the user is not authenticated (not logged in)
 if (!isset($_SESSION['user']) || (empty($_SESSION['user']))) {
