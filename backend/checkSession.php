@@ -6,10 +6,10 @@ session_start();
 
 // Check if a session exists
 if (isset($_SESSION['user'])) {
-    // Return user data as a JSON response
+    // If true, return existing user data saved in global session variable 'user' as a JSON response
     echo json_encode(['user' => $_SESSION['user']]);
 } else {
-    // No session exists
+    // If no session exists, return user data as null
     echo json_encode(['user' => null]);
 }
 ?>
