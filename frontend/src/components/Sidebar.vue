@@ -5,8 +5,10 @@
 import { ref } from 'vue'
 import logoURL from '../assets/logo.png'
 
+// Define a reactive variable to track the expanded/collapsed state of the sidebar
 const is_expanded = ref(localStorage.getItem("is_expanded") === "true")
 
+// Function to toggle the menu expansion state and update localStorage
 const ToggleMenu = () => {
 	is_expanded.value = !is_expanded.value
 	localStorage.setItem("is_expanded", is_expanded.value)
@@ -14,27 +16,30 @@ const ToggleMenu = () => {
 </script>
 
 <template>
+	<!-- Sidebar component template -->
 	<aside :class="`${is_expanded ? 'is-expanded' : ''}`">
+		<!-- Logo section -->
 		<div class="logo">
 			<img :src="logoURL" alt="Vue" /> 
 		</div>
 
+		<!-- Menu toggle button -->
 		<div class="menu-toggle-wrap">
 			<button class="menu-toggle" @click="ToggleMenu">
 				<span class="material-icons">keyboard_double_arrow_right</span>
 			</button>
 		</div>
 
+		<!-- Heading for the menu section -->
 		<h3>Menu</h3>
+
+		<!-- Menu items section -->
 		<div class="menu">
+			<!-- Router link to the 'Meine Ablage' page -->
 			<router-link to="/home" class="button">
 				<span class="material-icons">folder_open</span>
 				<span class="text">Meine Ablage</span>
 			</router-link>
-			<!-- <router-link to="/deletedFiles" class="button">
-				<span class="material-icons">delete</span>
-				<span class="text">Gelöschte Dateien</span>
-			</router-link> -->
 			
 		</div>
 
@@ -45,7 +50,9 @@ const ToggleMenu = () => {
 </template>
 
 <style lang="scss" scoped>
+/* Scoped styles for the Sidebar component */
 aside {
+	// Basic styling for the Sidebar
 	display: flex;
 	flex-direction: column;
 
@@ -72,6 +79,7 @@ aside {
 		}
 	}
 
+	// Styling for the menu toggle button
 	.menu-toggle-wrap {
 		display: flex;
 		justify-content: center;
@@ -102,6 +110,7 @@ aside {
 		}
 	}
 
+	// Styling for heading and menu items when sidebar is not expanded
 	h3, .button .text {
 		opacity: 0;
 		transition: opacity 0.3s ease-in-out;
@@ -164,6 +173,7 @@ aside {
 		}
 	}
 
+	// Styling when the sidebar is expanded
 	&.is-expanded {
 		width: var(--sidebar-width);
 		z-index: 2;
@@ -179,6 +189,7 @@ aside {
 			}
 		}
 	
+		// Show heading and menu items when expanded
 		h3, .button .text {
 			opacity: 1;
 		}
