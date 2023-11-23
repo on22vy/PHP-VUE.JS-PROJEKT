@@ -6,7 +6,7 @@
     session_start();
 
     // Include the database connection
-    include("dbconnect.php");
+    require_once("dbconnect.php");
 
     // Initialize an array to store response data
     $out = array('error' => false);
