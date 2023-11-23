@@ -7,67 +7,82 @@ import GridView from '../views/GridView.vue'
 import { ref } from 'vue'
 import axios from 'axios'
 
+// Variable that refers to the currently active view (initially set to 'list')
 const activeView = ref('list');
 
+// Function to switch between list and grid views
 const show = (view) => {
   activeView.value = view;
 };
 
+// Reactive variable to hold the selected file from local
 const file = ref('');
 
+// Function triggered when a file is selected/clicked
+const onFileSelected = (event) => {
+  // Update the file variable with the selected file
+  file.value = event.target.files[0];
 
-const submitForm = () => {
+  // Automatically trigger the upload method
+  upload();
+};
+
+
+// Function to send/upload the data to server
+const upload = () => {
   if (file.value) {
+    // Create form data and append the selected file
     const formData = new FormData();
     formData.append('file', file.value);
 
+    // Perform a POST request to upload the file
     axios.post('http://localhost:8000/php/uploadFile.php', formData, {
       headers: {
         'Content-Type': 'multipart/form-data',
       },
     })
     .then((data) => {
-      console.log(data.data);
+      console.log(data.data); // Log the response data on success
     })
     .catch(() => {
-      console.log('FAILURE!!');
+      console.log('FAILURE!!'); // Log failure if request fails
     });
   }
 };
 
-const onFileSelected = (event) => {
-  // Update the file variable with the selected file
-  file.value = event.target.files[0];
-
-  // Automatically trigger the submitForm method
-  submitForm();
-};
 
 </script>
 
 <template>
+    <!-- Toolbar section -->
     <div class="toolWrapper">
+        <!-- 2 Buttons to switch between list and grid view -->
         <div class="toggleView">
 		      <button @click="show('list')" class="material-icons">list</button>
           <button @click="show('grid')" class="material-icons">grid_view</button>
-	    </div>
-        <!-- <button type = "file" class="uploadButton">Datei hochladen</button> -->
+	      </div>
+        
+        <!-- File upload button -->
         <label class="uploadButton">
             <span class="material-icons">cloud_upload</span>
+            <!-- Hidden input field on UI for triggering file selection -->
             <input type="file" style="display: none" ref="file" @change="onFileSelected"/>
             File Upload
         </label>
         
     </div>
+
+    <!-- View content based on choosen active view -->
     <div class="viewContent">
+            <!-- Render ListView or GridView -->
             <div v-if="activeView === 'list'">
-        <!-- List View Content -->
+              <!-- List View Content -->
                 <ListView/>
         
             </div>
             
             <div v-else-if="activeView === 'grid'">
-        <!-- Grid View Content -->
+              <!-- Grid View Content -->
                 <GridView/>
        
             </div>  
@@ -97,7 +112,6 @@ const onFileSelected = (event) => {
 }
 
 .viewContent {
-    // background-color: lightgray;
     height: 500px;
     margin-top: 20px;
 }
