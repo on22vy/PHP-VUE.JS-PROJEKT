@@ -2,6 +2,7 @@
 /**
  * @author Thi Tuong Vy Nguyen <thi.nguyen.22@lehre.mosbach.dhbw.de>
  */
+// Start the session to access session variables
 session_start();
 
 // Check if a session exists
