@@ -13,9 +13,11 @@
   const username = ref('');
 
   const response = () => {
+    //Fetch user data when user has logged in successfully
     axios.get('http://localhost:8000/php/successLogin.php')
     .then((response) => {
       if (response.data.username) {
+        // Set the username if available in the response
         username.value = response.data.username;
       }else {
         console.error(error);
@@ -24,6 +26,7 @@
   }
 
   const logout = () => {
+    // Perform logout by making a request to the server
     axios.get('http://localhost:8000/php/logout.php')
       .then(() => {
         // After successful logout, navigate to the login page
@@ -45,21 +48,32 @@
   <main class="homePage">
     <!-- Sidebar -->
     <Sidebar />
+
+    <!-- Container for main content-->
     <div class="content">
+      <!-- Container for welcome text and logout button -->
       <div class="welcome-container">
-        <h1 class="welcome-text">👋 Welcome back, {{ username }}!</h1>
+        <!--Welcome text-->
+        <h1 class="welcome-text">👋 Welcome back, {{ username }}!</h1> <!--Display welcome text with username of the logged-in user--> 
+        
+        <!--Log out Button-->
         <button @click="logout()" class="logout-button">
           <span class="material-icons logout-icon">logout</span>
           Logout
         </button>
       </div>
+
+      <!-- Container for Toolbar -->
       <div class="tools">
         <!-- Toolbar -->
         <Toolbar />
       </div>
+
+      <!-- Container for file structure-->
       <div class="filesContainer">
-        <!-- Entweder FileStructur oder Kachel -->
+        <!-- Placeholder for file structure displayed either in list view or grid view-->
       </div>
+
     </div>
   </main>
 </template>
@@ -75,7 +89,7 @@
 }
 
 .content {
-  flex: 1; /* Take remaining space */
+  flex: 1; 
   margin: 2rem;
 }
 
@@ -100,7 +114,7 @@
 }
 
 .logout-icon {
-  margin-right: 5px; /* Add space between icon and text */
+  margin-right: 5px;
 }
 
 @media (max-width: 768px) {
