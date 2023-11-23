@@ -79,6 +79,7 @@ const onFileSelected = (event) => {
 .toolWrapper {
     position: relative;
     height: 120px;
+    margin-left: calc(2rem + 32px)
 
 
 }
@@ -122,14 +123,31 @@ const onFileSelected = (event) => {
 
 /* Responsive styles */
 @media (max-width: 768px) {
-  .toolWrapper {
-    height: 60px; /* Adjust the height for smaller screens. */
-  }
+    .toolWrapper {
+        height: auto;
+        flex-direction: column;
+        margin-left: calc(2rem + 32px)
+    }
+    .viewContent {
+        height: 300px; 
+    }
 
-  .viewContent {
-    height: 300px; /* Adjust the height for smaller screens. */
-  }
+    .toggleView {
+        position: static; 
+        display: block; 
+        margin-top: 10px; 
+        button {
+            margin-right: 10px; 
+        }
+    }
+
+    .uploadButton {
+        position: static;
+        margin-top: 10px;
+        padding: 8px 12px; 
+        font-size: 14px; 
+        width: 50%; 
+    }
 }
-
 
 </style>

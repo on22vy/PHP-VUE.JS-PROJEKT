@@ -111,8 +111,12 @@ const renameFile = (file) => {
                       {{ file.filename }}
                       </a>
                       </td>
-                      <td class="center">{{ file.filesize }}</td>
-                      <td class="right">{{ file.created_date  }}</td>
+                      <td class="center">
+                      <span class="file-size">{{ file.filesize }}</span> 
+                    </td>
+                      <td class="right">
+                         <span class="created-date">{{ file.created_date }}</span>
+                       </td>
                       <td class="right">
                         
                     <!-- A button to download the file -->
@@ -134,8 +138,8 @@ const renameFile = (file) => {
 
 
 
-<style scoped>
 
+<style scoped>
 .downloadButton {
   cursor: pointer;
   padding: 5px; /* Add some space to the icons */
@@ -151,29 +155,26 @@ const renameFile = (file) => {
   padding: 5px; /* Add some space to the icons */
   margin-left: 10px; /* Add some space between the icons and elements */
 }
-
-
+.file-name {
+  font-size: 16px; /* Default font size for created date */
+}
 .file-name:hover {
   text-decoration: underline;
 }
 
-
   .fileView {
     background-color: #f2f2f2; 
     padding: 10px; /* inner distance */
+    margin-left: calc(2rem + 32px);
   }
-
   table {
     width: 100%; 
     border-collapse: collapse; /* Combine table cells */
   }
-
   th {
     text-align: left; /*  Align text left  */
     padding: 8px; /* Padding for cells */
     background-color: #ccc; 
-    font-weight: 700;
-
   }
   td {
     text-align: center;
@@ -182,41 +183,61 @@ const renameFile = (file) => {
   th.left {
     text-align: left;
   }
-
   th.center {
     text-align: center;
   }
-
   th.right {
     text-align: right;
   }
-
 th.actionHeader {
   text-align: right;
   }
   tr:nth-child(even) {
     background-color: #fff; /* Background color for even line */
   }
-
   tr:nth-child(odd) {
     background-color: #f2f2f2; /* Background color for odd lines*/
   }
   td.left {
     text-align: left;
   }
-
   td.center {
     text-align: center;
   }
-
   td.right {
     text-align: right;
   }
-
   a {
     text-decoration: none;
     color: #000;
   }
-
- 
+  .created-date {
+  font-size: 16px; /* Default font size for created date */
+}
+.file-size {
+  font-size: 16px; /* Default font size for created date */
+}
+/* Mobile Styles */
+@media screen and (max-width: 768px) {
+  th, td {
+    padding: 5px;
+  }
+  .file-name {
+    font-size: 14px;
+  }
+  .downloadButton, .deleteButton, .renameButton {
+    margin-right: 0; /* No margin between buttons */
+    margin-bottom: 5px; /* Add space between buttons in the vertical direction */
+    font-size: 14px;
+  }
+  .created-date {
+    font-size: 12px; /* Reduce font size by 2pt */
+  }
+  .file-size {
+    font-size: 12px; /* Reduce font size by 2pt */
+  }
+  .file-name{
+  font-size: 12px; /* Reduce font size by 2pt */
+  }
+}
 </style>

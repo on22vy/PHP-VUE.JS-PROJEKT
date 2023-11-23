@@ -177,6 +177,9 @@
   align-items: center;
   justify-content: space-between;
   cursor: pointer;
+  position: relative; 
+  left: calc(2rem + 32px);
+
 }
 
 .file-box:hover {
@@ -284,5 +287,17 @@ a{
   padding: 10px;
   font-size: 50px;
 }
+@media screen and (max-width: 768px) {
+
+  .file-box {
+    width: calc(100% - 2 * (2rem + 32px)); 
+  }
+}
+.show-dropdown {
+    display: block;
+    left: -60px;
+  }
+
+
 </style>
   
