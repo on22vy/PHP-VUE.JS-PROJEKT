@@ -2,19 +2,13 @@
 /**
  * @author Acelya Cagan <acelya.cagan@gmail.com>
 */
-// Einstellungen für CORS
+
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
 header("Access-Control-Allow-Headers: Content-Type");
 
 // connect with database
 require_once('dbconnect.php');
-
-// Option-Anfrage beantworten und beenden, wenn nötig
-// if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
-//     exit();
-// }
-
 
 // get data from vue.js frontend
 $data = json_decode(file_get_contents("php://input"));
