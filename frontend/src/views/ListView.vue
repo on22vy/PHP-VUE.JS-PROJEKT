@@ -77,7 +77,7 @@ const renameFile = (file) => {
       newFilename: newFilename
     })
     .then((response) => {
-      console.log(response); // Hier die Serverantwort ausgeben
+      console.log(response); 
       getAllFiles();
     })
     .catch((error) => {
