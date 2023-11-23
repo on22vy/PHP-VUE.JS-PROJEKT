@@ -5,15 +5,17 @@
   
   import axios from 'axios';
   import { ref, onMounted, onUnmounted } from 'vue';
-  // import DropdownMenu from '../components/Dropdown.vue';
 
+  // Variables to hold metadata of files and active file ID for dropdown
   const files = ref("");
   const activeFileId = ref(null);
 
+  // Function to toggle the dropdown on clicking the three dots button
   const toggleDropdown = (fileId) => {
     activeFileId.value = fileId === activeFileId.value ? null : fileId;
   };
   
+  // Function to close dropdown when clicking outside the dropdown
   const closeDropdown = (event) => {
     const clickedElement = event.target;
 
@@ -22,6 +24,7 @@
   }
   };
 
+  // Attach event listeners when component is mounted and remove them when unmounted
   onMounted(() => {
     document.addEventListener('click', closeDropdown);
   });
@@ -30,6 +33,7 @@
     document.removeEventListener('click', closeDropdown);
   });
 
+  // Function to retrieve existing/uploaded files from the server
   const getAllFiles = () => {
     axios.get('http://localhost:8000/php/getFilesList.php', {
       headers: {
@@ -38,6 +42,7 @@
     })
     .then((response) => {
         files.value = response.data
+        // Schedule a periodic refresh of file list every second to ensure that file list stays updated by changes in database
         setTimeout(getAllFiles, 1000);
     })
     .catch(function(error){
@@ -45,6 +50,7 @@
     });
   }
 
+  // Function to delete a file by its ID
   const deleteFile = (fileId) => {
     axios.delete('http://localhost:8000/php/deleteFile.php', {
       data: {
@@ -52,48 +58,57 @@
       }
     })
       .then(() => {
-        // Erfolgreich gelöscht: Aktualisiere die Dateiliste, um die gelöschte Datei zu entfernen
+       // Successfully deleted: Refresh the file list to remove the deleted file
         getAllFiles();
       })
       .catch((error) => {
-        // Fehlerbehandlung, falls die Datei nicht gelöscht werden konnte
+        // Error handling if the file couldn't be deleted
         console.error("Fehler beim Löschen der Datei: " + error);
       });
   };
 
+  // Function to download a file
   const downloadFile = (file) => {
     if (file) {
+        // Create a link element
         const link = document.createElement('a');
         link.style.display = 'none';
         link.href = '../'+'php/'+file.path_to_file;
         link.target = '_blank';
         link.download = file.filename;
         
+        // Add the link to the document and trigger it
         document.body.appendChild(link);
         link.click();
         
+        //Remove the link
         document.body.removeChild(link);
     }
   };
   
+  // Function to rename a file
   const renameFile = (file) => {
+    // Prompt the user for typing a new filename
     const newFilename = prompt("Neuer Dateiname:", file.filename);
 
     if (newFilename) {
+      // Send a request to the server to rename the file
       axios.put('http://localhost:8000/php/renameFile.php', {
         fileId: file.id,
         newFilename: newFilename
       })
       .then((response) => {
-        console.log(response); // Hier die Serverantwort ausgeben
-        getAllFiles();
+        console.log(response); 
+        getAllFiles(); // Refresh the file list
       })
       .catch((error) => {
+        // Error handling if the file couldn't be renamed
         console.error("Fehler beim Umbenennen der Datei: " + error);
       });
     }
   };
 
+  // Function to truncate a filename for display if the filename is too long
   const truncateFileName = (filename) => {
     if (filename.length > 20) {
       return filename.slice(0, 20) + '...';
@@ -101,6 +116,7 @@
     return filename;
   };
 
+  // Initial fetch of files when the component is mounted
   onMounted(()=>
   {
       getAllFiles();
@@ -112,18 +128,27 @@
 
 <template> 
   <div class="fileView">
+    <!-- The grid container for files -->
     <div class="grid-container">
+      <!-- File box for each file -->
       <div class="file-box" v-for="file in files">
 
+        <!-- Dropdown Menu container with three dot button -->
         <div class="action-container">
           <button class="material-icons threeDotsBtn" @click="toggleDropdown(file.id)">more_vert</button> 
+
+          <!-- Dropdown content with available actions on file: delete, download, rename -->
           <ul class = "dropdown-content" :class="{ 'show-dropdown': file.id === activeFileId }">
+
+             <!-- Delete file button -->
             <li class="dropdown-item">
               <button class = "delete-btn" @click="deleteFile(file.id)">
                 <span class="material-icons">delete</span>
 				        <span class="text">Delete</span>
               </button>
             </li>
+
+             <!-- Download file button -->
             <li class="dropdown-item">
               <button class = "download-btn" @click="downloadFile(file)">
                 <span class="material-icons">download</span>
@@ -131,6 +156,8 @@
               </button>
               
             </li>
+
+            <!-- Rename file button -->
             <li class="dropdown-item">
               <button class = "rename-btn" @click="renameFile(file)">
                 <span class="material-icons">edit</span>
@@ -141,10 +168,17 @@
           </ul>
         </div>
         
+        <!-- Open File in new tab in browser -->
+        <!-- Create file url based on path of file that was retrieved from server/database -->
         <a :href="'../'+'php/'+file.path_to_file" target="_blank">
+          <!-- File Icon -->
           <div class="material-icons file-icon">description</div>
+
+          <!-- File infos -->
           <div class="file-details">
+            <!-- Display truncated filename -->
             <div class="filename" :title="file.filename">{{ truncateFileName(file.filename) }}</div>
+            <!-- Display created date of file -->
             <div class="created-date">{{ file.created_date }}</div>
           </div>
         </a>
@@ -162,8 +196,8 @@
 
 .grid-container {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Adjust the column width as needed */
-  gap: 20px; /* Adjust the gap between grid items */
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); 
+  gap: 20px; 
   grid-auto-flow: row;
 }
 
@@ -197,7 +231,7 @@
   height: 40px;
   border-radius: 50%;
   display: flex;
-  align-items: center; /* Center vertically */
+  align-items: center; 
   justify-content: center;
   background-color: transparent;
   color: var(--dark);
