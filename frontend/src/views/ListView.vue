@@ -91,7 +91,7 @@ const renameFile = (file) => {
 
 <template>
   <!-- <p>Test Grid</p> -->
-  <div class="fileView">
+  <div class="file-view">
           
            <table>
               <thead>
@@ -99,7 +99,7 @@ const renameFile = (file) => {
                   <th class="left">Filename</th>
                   <th class="center">Filesize</th>
                   <th class="right">Created</th>
-                  <th class="actionHeader"></th>
+                  <th class="action-header"></th>
                 </tr>
               </thead>
               <tbody><!-- A loop through the files in the 'files' list-->
@@ -120,10 +120,10 @@ const renameFile = (file) => {
                       <td class="right">
                         
                     <!-- A button to download the file -->
-                    <button @click="downloadFile(file)" class="downloadButton material-icons">download</button>
+                    <button @click="downloadFile(file)" class="download-button material-icons">download</button>
                     <!-- A button to delete the file -->
-                     <button @click="deleteFile(file.id)" class="deleteButton material-icons">delete</button>
-                     <button @click="renameFile(file)" class="renameButton material-icons">create</button>
+                     <button @click="deleteFile(file.id)" class="delete-button material-icons">delete</button>
+                     <button @click="renameFile(file)" class="rename-button material-icons">create</button>
 
           </td>
                    
@@ -140,17 +140,17 @@ const renameFile = (file) => {
 
 
 <style scoped>
-.downloadButton {
+.download-button {
   cursor: pointer;
   padding: 5px; /* Add some space to the icons */
   margin-left: 10px; /* Add some space between the icons and elements */
 }
-.deleteButton {
+.delete-button {
   cursor: pointer;
   padding: 5px; /* Add some space to the icons */
   margin-left: 10px; /* Add some space between the icons and elements */
 }
-.renameButton {
+.rename-button {
   cursor: pointer;
   padding: 5px; /* Add some space to the icons */
   margin-left: 10px; /* Add some space between the icons and elements */
@@ -162,7 +162,7 @@ const renameFile = (file) => {
   text-decoration: underline;
 }
 
-  .fileView {
+  .file-view {
     background-color: #f2f2f2; 
     padding: 10px; /* inner distance */
     margin-left: calc(2rem + 32px);
@@ -189,7 +189,7 @@ const renameFile = (file) => {
   th.right {
     text-align: right;
   }
-th.actionHeader {
+th.action-header {
   text-align: right;
   }
   tr:nth-child(even) {
@@ -225,7 +225,7 @@ th.actionHeader {
   .file-name {
     font-size: 14px;
   }
-  .downloadButton, .deleteButton, .renameButton {
+  .download-button, .delete-button, .rename-button {
     margin-right: 0; /* No margin between buttons */
     margin-bottom: 5px; /* Add space between buttons in the vertical direction */
     font-size: 14px;
