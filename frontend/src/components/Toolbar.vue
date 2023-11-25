@@ -94,8 +94,6 @@ const upload = () => {
 .tool-wrapper {
     position: relative;
     height: 120px;
-    margin-left: calc(2rem + 32px)
-
 
 }
 

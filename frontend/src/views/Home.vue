@@ -124,7 +124,7 @@
 
   .content {
     margin: 2rem;
-  flex-direction: row; 
+    flex-direction: row; 
   }
   .logout-button {
     margin-top: 0.5rem; 
@@ -132,7 +132,6 @@
     top:0;
     right:0;
   }
-
 
   .welcome-container {
     order: 1; 

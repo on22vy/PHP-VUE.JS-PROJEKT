@@ -189,10 +189,6 @@
 </template>
   
 <style scoped>
-/* .file-view {
-  display: flex;
- 
-} */
 
 .grid-container {
   display: grid;
@@ -211,8 +207,6 @@
   align-items: center;
   justify-content: space-between;
   cursor: pointer;
-  position: relative; 
-  left: calc(2rem + 32px);
 
 }
 

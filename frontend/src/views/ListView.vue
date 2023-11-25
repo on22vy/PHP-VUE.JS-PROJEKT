@@ -165,7 +165,6 @@ const renameFile = (file) => {
   .file-view {
     background-color: #f2f2f2; 
     padding: 10px; /* inner distance */
-    margin-left: calc(2rem + 32px);
   }
   table {
     width: 100%; 
