@@ -99,18 +99,18 @@
             <div class="form"> 
 
               <!-- Username input -->
-              <div class="inputBox"> 
+              <div class="input-box"> 
                 <input type="text" name="username" v-model="logDetails.username" required> <i>Username</i> <!-- The v-model directive binds the username input value to the logDetails.username in script -->
               </div> 
 
                <!-- Password input -->
-              <div class="inputBox"> 
+              <div class="input-box"> 
                 <input type="password" name="password" v-model="logDetails.password" required> <i>Password</i> <!-- The v-model directive binds the password input value to the logDetails.password in script --> 
               </div> 
 
               <!-- Login button -->
-              <div class="inputBox"> 
-                <button type="submit" name="login" class="loginSubmit" @click="checkLogin()">Login</button> <!-- Run function checkLogin when click on login button -->
+              <div class="input-box"> 
+                <button type="submit" name="login" class="login-submit" @click="checkLogin()">Login</button> <!-- Run function checkLogin when click on login button -->
               </div> 
 
               <!-- Error message container -->
@@ -199,12 +199,12 @@ section .signin .content .form
   flex-direction: column;
   gap: 25px;
 }
-section .signin .content .form .inputBox
+section .signin .content .form .input-box
 {
   position: relative;
   width: 100%;
 }
-section .signin .content .form .inputBox input 
+section .signin .content .form .input-box input 
 {
   position: relative;
   width: 100%;
@@ -217,7 +217,7 @@ section .signin .content .form .inputBox input
   font-weight: 500;
   font-size: 1em;
 }
-section .signin .content .form .inputBox i 
+section .signin .content .form .input-box i 
 {
   position: absolute;
   left: 0;
@@ -227,8 +227,8 @@ section .signin .content .form .inputBox i
   transition: 0.5s;
   pointer-events: none;
 }
-.signin .content .form .inputBox input:focus ~ i,
-.signin .content .form .inputBox input:valid ~ i
+.signin .content .form .input-box input:focus ~ i,
+.signin .content .form .input-box input:valid ~ i
 {
   transform: translateY(-7.5px);
   font-size: 0.8em;
@@ -251,7 +251,7 @@ section .signin .content .form .inputBox i
   color: #4ADE80;
   font-weight: 600;
 }
-.signin .content .form .inputBox .loginSubmit
+.signin .content .form .input-box .login-submit
 {
   padding: 10px;
   background: #4ADE80;
@@ -262,7 +262,7 @@ section .signin .content .form .inputBox i
   cursor: pointer;
 }
 
-.loginSubmit {
+.login-submit {
   padding: 10px;
   background: #4ADE80; 
   color: #000;
@@ -278,7 +278,7 @@ section .signin .content .form .inputBox i
   width: 100%;
 }
 
-.loginSubmit:active
+.login-submit:active
 {
   opacity: 0.6;
 }

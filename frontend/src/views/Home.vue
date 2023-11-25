@@ -45,7 +45,7 @@
 </script>
 
 <template>
-  <main class="homePage">
+  <main class="home-page">
     <!-- Sidebar -->
     <Sidebar />
 
@@ -70,7 +70,7 @@
       </div>
 
       <!-- Container for file structure-->
-      <div class="filesContainer">
+      <div class="files-container">
         <!-- Placeholder for file structure displayed either in list view or grid view-->
       </div>
 
@@ -79,7 +79,7 @@
 </template>
 
 <style scoped>
-.homePage {
+.home-page {
   display: flex;
   flex-direction: column;
 
@@ -118,7 +118,7 @@
 }
 
 @media (max-width: 768px) {
-  .homePage {
+  .home-page {
     flex-direction: row;
   }
 

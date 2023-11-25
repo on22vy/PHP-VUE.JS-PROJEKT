@@ -55,15 +55,15 @@ const upload = () => {
 
 <template>
     <!-- Toolbar section -->
-    <div class="toolWrapper">
+    <div class="tool-wrapper">
         <!-- 2 Buttons to switch between list and grid view -->
-        <div class="toggleView">
+        <div class="toggle-view">
 		      <button @click="show('list')" class="material-icons">list</button>
           <button @click="show('grid')" class="material-icons">grid_view</button>
 	      </div>
         
         <!-- File upload button -->
-        <label class="uploadButton">
+        <label class="upload-button">
             <span class="material-icons">cloud_upload</span>
             <!-- Hidden input field on UI for triggering file selection -->
             <input type="file" style="display: none" ref="file" @change="onFileSelected"/>
@@ -73,7 +73,7 @@ const upload = () => {
     </div>
 
     <!-- View content based on choosen active view -->
-    <div class="viewContent">
+    <div class="view-content">
             <!-- Render ListView or GridView -->
             <div v-if="activeView === 'list'">
               <!-- List View Content -->
@@ -91,7 +91,7 @@ const upload = () => {
 </template>
 
 <style lang="scss">
-.toolWrapper {
+.tool-wrapper {
     position: relative;
     height: 120px;
     margin-left: calc(2rem + 32px)
@@ -99,7 +99,7 @@ const upload = () => {
 
 }
 
-.toggleView {
+.toggle-view {
     position: absolute;
     bottom: 10px;
     right: 10px;
@@ -111,12 +111,12 @@ const upload = () => {
     
 }
 
-.viewContent {
+.view-content {
     height: 500px;
     margin-top: 20px;
 }
 
-.uploadButton {
+.upload-button {
     position: absolute;
     bottom: 10px;
     left: 10px;
@@ -131,22 +131,22 @@ const upload = () => {
     display: flex; 
     align-items: center;
 }
-.uploadButton .material-icons {
+.upload-button .material-icons {
   margin-right: 10px; /* Add space between icon and text */
 }
 
 /* Responsive styles */
 @media (max-width: 768px) {
-    .toolWrapper {
+    .tool-wrapper {
         height: auto;
         flex-direction: column;
         margin-left: calc(2rem + 32px)
     }
-    .viewContent {
+    .view-content {
         height: 300px; 
     }
 
-    .toggleView {
+    .toggle-view {
         position: static; 
         display: block; 
         margin-top: 10px; 
@@ -155,7 +155,7 @@ const upload = () => {
         }
     }
 
-    .uploadButton {
+    .upload-button {
         position: static;
         margin-top: 10px;
         padding: 8px 12px; 

@@ -19,7 +19,7 @@
   const closeDropdown = (event) => {
     const clickedElement = event.target;
 
-    if (!clickedElement.closest('.threeDotsBtn')) {
+    if (!clickedElement.closest('.three-dots-btn')) {
       activeFileId.value = null;
   }
   };
@@ -127,7 +127,7 @@
 </script>
 
 <template> 
-  <div class="fileView">
+  <div class="file-view">
     <!-- The grid container for files -->
     <div class="grid-container">
       <!-- File box for each file -->
@@ -135,7 +135,7 @@
 
         <!-- Dropdown Menu container with three dot button -->
         <div class="action-container">
-          <button class="material-icons threeDotsBtn" @click="toggleDropdown(file.id)">more_vert</button> 
+          <button class="material-icons three-dots-btn" @click="toggleDropdown(file.id)">more_vert</button> 
 
           <!-- Dropdown content with available actions on file: delete, download, rename -->
           <ul class = "dropdown-content" :class="{ 'show-dropdown': file.id === activeFileId }">
@@ -189,7 +189,7 @@
 </template>
   
 <style scoped>
-/* .fileView {
+/* .file-view {
   display: flex;
  
 } */
@@ -226,7 +226,7 @@
   align-self: flex-end;
 }
 
-.threeDotsBtn{
+.three-dots-btn{
   width: 40px; /* Set the width and height for circular button */
   height: 40px;
   border-radius: 50%;
@@ -239,7 +239,7 @@
   cursor: pointer;
 }
 
-.threeDotsBtn:hover{
+.three-dots-btn:hover{
   background-color: var(--light);
 }
 
